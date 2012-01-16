@@ -1,5 +1,6 @@
 [core]
     excludesfile = ~/.gitignore-global
+	editor = vim
 
 [user]
     name = Leonardo Vilela Teixeira
