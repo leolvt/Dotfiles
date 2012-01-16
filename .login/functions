@@ -1,0 +1,402 @@
+
+# Prints the last minute Load Rate
+pLoad()
+{ 
+	uptime | sed -e "s_.*: \([^,]*\).*_\1_"
+}
+
+#------------------------------------------------------------------------------#
+
+# Prints the uptime.
+
+pUpTime()
+{
+	uptime | sed -e "s_.*\([0-9][0-9]*\):\([0-9]*\),.*_\1h\2m_"
+}
+
+#------------------------------------------------------------------------------#
+
+
+function xtitle()      # Adds some text in the terminal frame.
+{
+    case "$TERM" in
+        *term | rxvt)
+            echo -n -e "\033]0;$*\007" ;;
+        *)  
+            ;;
+    esac
+}
+
+# aliases that use xtitle
+alias top='xtitle Processes on $HOST && top'
+#alias make='xtitle Making $(basename $PWD) ; make'
+#alias ncftp="xtitle ncFTP ; ncftp"
+
+#------------------------------------------------------------------------------#
+
+function setenv()
+{
+	if [ $# -ne 2 ] ; then
+		echo "setenv: Too few arguments"
+	else
+		export $1="$2"
+	fi
+}
+
+#------------------------------------------------------------------------------#
+
+# Function which adds an alias to the current shell and to
+# the ~/.login/aliases file.
+add-alias ()
+{
+   local name=$1 value="$2"
+   echo alias $name=\'$value\' >>~/.login/aliases
+   eval alias $name=\'$value\'
+   alias $name
+}
+
+#------------------------------------------------------------------------------#
+
+# "repeat" command.  Like:
+#
+#	repeat 10 echo foo
+repeat ()
+{ 
+    local count="$1" i;
+    shift;
+    for i in $(_seq 1 "$count");
+    do
+        eval "$@";
+    done
+}
+
+#------------------------------------------------------------------------------#
+
+# Subfunction needed by `repeat'.
+_seq ()
+{ 
+    local lower upper output;
+    lower=$1 upper=$2;
+
+    if [ $lower -ge $upper ]; then return; fi
+    while [ $lower -lt $upper ];
+    do
+	echo -n "$lower "
+        lower=$(($lower + 1))
+    done
+    echo "$lower"
+}
+
+#------------------------------------------------------------------------------#
+
+# Grep a process
+psgrep()
+{
+	ps -ely | grep $1 | grep -v grep
+}
+
+#------------------------------------------------------------------------------#
+
+# kill a process by name
+pskill()
+{
+	local pid
+	pid=$(ps -e | grep $1 | awk '{ print $1 }')
+#	pid=$(ps ax | grep $1 | grep -v grep | awk '{ print $1 }')
+	echo -n "killing $1 (process $pid)..."
+	kill -9 $pid
+	echo "slaughtered."
+}
+
+#------------------------------------------------------------------------------#
+
+# Rotate 13 - Cypher
+rot13()
+{
+	if [ $# = 0 ] ; then
+		tr "[a-m][n-z][A-M][N-Z]" "[n-z][a-m][N-Z][A-M]"
+	else
+		tr "[a-m][n-z][A-M][N-Z]" "[n-z][a-m][N-Z][A-M]" < $1
+	fi
+}
+
+#------------------------------------------------------------------------------#
+
+# Change Mode, Owner and Group
+function chmog()
+{
+	if [ $# -ne 4 ] ; then
+		echo "usage: chmog mode owner group file"
+		return 1
+	else
+		chmod $1 $4
+		chown $2 $4
+		chgrp $3 $4
+	fi
+}
+
+#------------------------------------------------------------------------------#
+
+#myip - finds your current IP if your connected to the internet
+myip ()
+{
+	lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | \
+	awk '{ print $4 }' | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g'
+}
+
+#------------------------------------------------------------------------------#
+
+#clock - A bash clock that can run in your terminal window.
+clock ()
+{
+	while true;
+	do
+		clear;
+		echo "===========";
+		date +"%r";
+		echo "===========";
+		sleep 1;
+	done
+}
+
+#------------------------------------------------------------------------------#
+
+#netinfo - shows network information for your system
+netinfo ()
+{
+	echo "--------------- Network Information ---------------"
+	/sbin/ifconfig | awk /'inet addr/ {print $2}'
+	/sbin/ifconfig | awk /'Bcast/ {print $3}'
+	# /sbin/ifconfig | awk /'inet addr/ {print $4}'
+	/sbin/ifconfig | awk /'HWaddr/ {print $4,$5}'
+	myip=`lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g' `
+	echo
+	echo "${myip}"
+	echo "---------------------------------------------------"
+}
+
+#------------------------------------------------------------------------------#
+
+#shot - takes a screenshot of your current window
+shot ()
+{
+	import -w root -quality 75 "$HOME/shot-$(date +%s).png"
+}
+
+#------------------------------------------------------------------------------#
+
+#Translate a Word - USAGE: translate house
+translate ()
+{
+	TRANSLATED=`lynx -dump "http://translate.reference.com/browse/${1}" | \
+	grep -i -m 1 -w "Portuguese (Brazil):" | sed 's/^[ \t]*//;s/[ \t]*$//'`
+	if [[ ${#TRANSLATED} != 0 ]] ;then
+		echo "\"${1}\" in ${TRANSLATED}"
+	else
+		echo "Sorry, I can not translate \"${1}\" to Portuguese (Brazil)"
+	fi
+}
+
+#-------------------------------------------------------------
+# Make the following commands run in background automatically:
+#-------------------------------------------------------------
+
+function te()  # Wrapper around xemacs/gnuserv ...
+{
+    if [ "$(gnuclient -batch -eval t 2>&-)" == "t" ]; then
+        gnuclient -q "$@";
+    else
+        ( xemacs "$@" &);
+    fi
+}
+
+function soffice() { command soffice "$@" & }
+function firefox() { command firefox "$@" & }
+function xpdf() { command xpdf "$@" & }
+function gedit() { command gedit "$@" & }
+
+#-------------------------------------------------------------
+# File & string-related functions:
+#-------------------------------------------------------------
+
+# Find a file with a pattern in name:
+function ff() { find . -type f -iname '*'$*'*' -ls ; }
+
+# Find a file with pattern $1 in name and Execute $2 on it:
+function fe()
+{ find . -type f -iname '*'${1:-}'*' -exec ${2:-file} {} \;  ; }
+
+#------------------------------------------------------------------------------#
+
+# Find a pattern in a set of files and highlight them:
+# (needs a recent version of egrep)
+function fstr()
+{
+    OPTIND=1
+    local case=""
+    local usage="fstr: find string in files.
+Usage: fstr [-i] \"pattern\" [\"filename pattern\"] "
+    while getopts :it opt
+    do
+        case "$opt" in
+        i) case="-i " ;;
+        *) echo "$usage"; return;;
+        esac
+    done
+    shift $(( $OPTIND - 1 ))
+    if [ "$#" -lt 1 ]; then
+        echo "$usage"
+        return;
+    fi
+    find . -type f -name "${2:-*}" -print0 | \
+    xargs -0 egrep --color=always -sn ${case} "$1" 2>&- | more 
+
+}
+
+#------------------------------------------------------------------------------#
+
+function cuttail() # cut last n lines in file, 10 by default
+{
+    nlines=${2:-10}
+    sed -n -e :a -e "1,${nlines}!{P;N;D;};N;ba" $1
+}
+
+#------------------------------------------------------------------------------#
+
+function lowercase()  # move filenames to lowercase
+{
+    for file ; do
+        filename=${file##*/}
+        case "$filename" in
+        */*) dirname==${file%/*} ;;
+        *) dirname=.;;
+        esac
+        nf=$(echo $filename | tr A-Z a-z)
+        newname="${dirname}/${nf}"
+        if [ "$nf" != "$filename" ]; then
+            mv "$file" "$newname"
+            echo "lowercase: $file --> $newname"
+        else
+            echo "lowercase: $file not changed."
+        fi
+    done
+}
+
+#------------------------------------------------------------------------------#
+
+function swap()  # Swap 2 filenames around, if they exist
+{                #(from Uzi's bashrc).
+    local TMPFILE=tmp.$$ 
+
+    [ $# -ne 2 ] && echo "swap: 2 arguments needed" && return 1
+    [ ! -e $1 ] && echo "swap: $1 does not exist" && return 1
+    [ ! -e $2 ] && echo "swap: $2 does not exist" && return 1
+
+    mv "$1" $TMPFILE 
+    mv "$2" "$1"
+    mv $TMPFILE "$2"
+}
+
+#------------------------------------------------------------------------------#
+
+function extract()      # Handy Extract Program.
+{
+     if [ -f $1 ] ; then
+         case $1 in
+             *.tar.bz2)   tar xvjf $1     ;;
+             *.tar.gz)    tar xvzf $1     ;;
+             *.bz2)       bunzip2 $1      ;;
+             *.rar)       unrar x $1      ;;
+             *.gz)        gunzip $1       ;;
+             *.tar)       tar xvf $1      ;;
+             *.tbz2)      tar xvjf $1     ;;
+             *.tgz)       tar xvzf $1     ;;
+             *.zip)       unzip $1        ;;
+             *.Z)         uncompress $1   ;;
+             *.7z)        7z x $1         ;;
+             *)           echo "'$1' cannot be extracted via >extract<" ;;
+         esac
+     else
+         echo "'$1' is not a valid file"
+     fi
+}
+
+
+#-------------------------------------------------------------
+# Process/system related functions:
+#-------------------------------------------------------------
+
+
+function my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,bsdtime,command ; }
+function pp() { my_ps f | awk '!/awk/ && $0~var' var=${1:-".*"} ; }
+
+#------------------------------------------------------------------------------#
+
+function killps()                 # Kill by process name.
+{
+    local pid pname sig="-TERM"   # Default signal.
+    if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+        echo "Usage: killps [-SIGNAL] pattern"
+        return;
+    fi
+    if [ $# = 2 ]; then sig=$1 ; fi
+    for pid in $(my_ps| awk '!/awk/ && $0~pat { print $1 }' pat=${!#} ) ; do
+        pname=$(my_ps | awk '$1~var { print $5 }' var=$pid )
+        if ask "Kill process $pid <$pname> with signal $sig?"
+            then kill $sig $pid
+        fi
+    done
+}
+
+#------------------------------------------------------------------------------#
+
+function my_ip() # Get IP adresses.
+{
+    MY_IP=$(/sbin/ifconfig eth0 | awk '/inet/ { print $2 } ' | \
+sed -e s/addr://)
+    MY_ISP=$(/sbin/ifconfig eth0 | awk '/P-t-P/ { print $3 } ' | \
+sed -e s/P-t-P://)
+}
+
+#------------------------------------------------------------------------------#
+
+function ii()   # Get current host related info.
+{
+    echo -e "\nYou are logged on ${RED}$HOST"
+    echo -e "\nAdditionnal information:$NC " ; uname -a
+    echo -e "\n${RED}Users logged on:$NC " ; w -h
+    echo -e "\n${RED}Current date :$NC " ; date
+    echo -e "\n${RED}Machine stats :$NC " ; uptime
+    echo -e "\n${RED}Memory stats :$NC " ; free
+    my_ip 2>&- ;
+    echo -e "\n${RED}Local IP Address :$NC" ; echo ${MY_IP:-"Not connected"}
+    echo -e "\n${RED}ISP Address :$NC" ; echo ${MY_ISP:-"Not connected"}
+    echo -e "\n${RED}Open connections :$NC "; netstat -pan --inet;
+    echo
+}
+
+#-------------------------------------------------------------
+# Misc utilities:
+#-------------------------------------------------------------
+
+function ask()          # See 'killps' for example of use.
+{
+    echo -n "$@" '[y/n] ' ; read ans
+    case "$ans" in
+        y*|Y*) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+#------------------------------------------------------------------------------#
+
+function corename()   # Get name of app that created a corefile.
+{ 
+    for file ; do
+        echo -n $file : ; gdb --core=$file --batch | head -1
+    done 
+}
+
+#------------------------------------------------------------------------------#
+
+
