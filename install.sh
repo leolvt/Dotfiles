@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ ! -f "bashrc" ]; then
+    echo "Didn't find dotfiles..."
+    echo "You must run the install script inside the Dotfiles directory."
+    exit 1
+fi
+
 echo "Installing Bash config files (bashrc, bash_login, bash_logout)"
 ln -s $PWD/bash_login ~/.bash_login
 ln -s $PWD/bash_logout ~/.bash_logout
@@ -11,3 +17,8 @@ echo "Installing custom login files"
 ln -s $PWD/login/ ~/.login
 echo "Installing Vim config files (vimrc)"
 ln -s $PWD/vimrc ~/.vimrc
+
+if [ ! -d "~/.vim/bundle/vundle" ]; then
+    echo "Installing Vim Vundle script, to manage vim plugins."
+    git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+fi
