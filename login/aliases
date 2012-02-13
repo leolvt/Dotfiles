@@ -2,7 +2,6 @@
 # Personnal Aliases
 #-------------------
 
-alias vim="gvim -v"
 alias gvimt="gvim --remote-tab"
 
 #-------------------------------------------------------------
