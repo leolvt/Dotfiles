@@ -39,10 +39,15 @@
 # 1) Update PATH and other envvars.
 #-------------------------------------------------------------
 
-LOCALPATH=~/.local/bin:~/Tools
-PATH=$PATH:$LOCALPATH
+LOCALPATH=~/.local/bin:~/Tools:~/.gem/ruby/1.9.1/bin
+export PATH=$PATH:$LOCALPATH
 export TEXMFHOME=~/.texmf
-EDITOR=vim
+export EDITOR=vim
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+export PERL_LOCAL_LIB_ROOT="/home/vilela/.local";
+export PERL_MB_OPT="--install_base /home/vilela/.local";
+export PERL_MM_OPT="INSTALL_BASE=/home/vilela/.local";
+export PERL5LIB="/home/vilela/.local/lib/perl5/x86_64-linux-thread-multi:/home/vilela/.local/lib/perl5";
 
 #-------------------------------------------------------------
 # 2) Source global definitions (if any)
@@ -54,12 +59,12 @@ fi
 
 # Load profiles from /etc/profile.d
 if test -d /etc/profile.d/; then
-	for profile in /etc/profile.d/*.sh; do
-		test -r "$profile" && . "$profile"
-	done
-	for profile in /etc/profile.d/*.bash; do
-		test -r "$profile" && . "$profile"
-	done
+    for profile in /etc/profile.d/*.sh; do
+        test -r "$profile" && . "$profile"
+    done
+	#for profile in /etc/profile.d/*.bash; do
+		#test -r "$profile" && . "$profile"
+	#done
 	unset profile
 fi
 
@@ -92,7 +97,7 @@ export HISTCONTROL=ignoredups
 export HISTCONTROL=ignoreboth
 
 # History Ignore
-HISTIGNORE="[   ]*:&:bg:fg"
+export HISTIGNORE="[   ]*:&:bg:fg"
 
 # Append to the history file, don't overwrite it
 shopt -s histappend
@@ -234,6 +239,9 @@ function fastprompt()
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion 
+fi
 
 #-------------------------------------------------------------
 # 8) Run Login Script (Greetings, motd, etc...)
@@ -242,3 +250,5 @@ fi
 if [ -f ~/.login/on_login ]; then
     . ~/.login/on_login
 fi
+
+

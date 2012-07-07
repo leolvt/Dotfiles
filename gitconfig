@@ -14,4 +14,4 @@
     co    = checkout
     ci    = commit
     em    = "!${EDITOR:-vim} $(git ls-files --modified)"
-    st    = status --short --branch 
+    st    = status --branch 
