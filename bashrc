@@ -33,7 +33,9 @@
 # If not running interactively, don't do anything
 #-------------------------------------------------------------
 
+# If not running interactively, don't do anything
 [ -z "$PS1" ] && return
+[[ $- != *i* ]] && return
 
 #-------------------------------------------------------------
 # 1) Update PATH and other envvars.
