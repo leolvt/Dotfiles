@@ -1,3 +1,65 @@
+#-------------------------------------------------------------
+# Git helpers:
+#-------------------------------------------------------------
+
+function hack()
+{
+    B="\033[01;34m"
+    G="\033[01;32m"
+    R="\033[01;31m" 
+    O="\033[00;33m"
+    Y="\033[01;33m"
+    C="\033[00;36m"
+    P="\033[01;35m"
+    W="\033[00;37m"
+    NC="\033[00;0m"
+    PROMPT="$Y>> ${O}[${R}HACKING${B}${O}] ${Y}>>${Y}" 
+    echo -e "$PROMPT Getting branch name... $W"
+    CURRENT=`git branch | grep '\*' | awk '{print $2}'`
+    echo -e "$PROMPT Checking out 'master' branch... $W"
+    git checkout master
+    echo -e "$PROMPT Pulling upstream updates... $W"
+    git pull origin master
+    echo -e "$PROMPT Going back to '$CURRENT' branch... $W"
+    git checkout ${CURRENT}
+    echo -e "$PROMPT Rebasing '$CURRENT' onto 'master'... $W"
+    git rebase master
+    echo -e "$PROMPT DONE!$NC"
+    echo ""
+}
+
+#-------------------------------------------------------------
+
+function ship()
+{
+    B="\033[01;34m"
+    G="\033[01;32m"
+    R="\033[01;31m" 
+    O="\033[00;33m"
+    P="\033[01;35m"
+    Y="\033[01;33m"
+    W="\033[00;37m"
+    NC="\033[00;0m"
+    PROMPT="$Y>> ${O}[${G}SHIPPING${B}${O}] ${Y}>>${Y}" 
+    echo -e "$PROMPT Getting branch name... $W"
+    CURRENT=`git branch | grep '\*' | awk '{print $2}'`
+    echo -e "$PROMPT Checking out 'master' branch... $W"
+    git checkout master
+    echo -e "$PROMPT Merging '$CURRENT' to 'master'... $W"
+    git merge ${CURRENT}
+    echo -e "$PROMPT Pushing new changes... $W"
+    git push origin master
+    echo -e "$PROMPT Going back to '$CURRENT'... $W"
+    git checkout ${CURRENT}
+    echo -e "$PROMPT DONE!$NC"
+    echo ""
+}
+
+#-------------------------------------------------------------
+# General Purpose functions
+#-------------------------------------------------------------
+
+#------------------------------------------------------------------------------#
 
 # Prints the last minute Load Rate
 pLoad()
