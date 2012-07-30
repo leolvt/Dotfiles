@@ -55,18 +55,22 @@ export PERL5LIB="/home/vilela/.local/lib/perl5/x86_64-linux-thread-multi:/home/v
 # 2) Source global definitions (if any)
 #-------------------------------------------------------------
 
+# TODO: Instead of sourcing, copy the relevant contents
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
 # Load profiles from /etc/profile.d
+# TODO: Check for duplicated ENVVARS and PATH
 if test -d /etc/profile.d/; then
-    for profile in /etc/profile.d/*.sh; do
+    for profile in /etc/profile.d/*.bash; do
         test -r "$profile" && . "$profile"
     done
+
 	#for profile in /etc/profile.d/*.bash; do
 		#test -r "$profile" && . "$profile"
 	#done
+
 	unset profile
 fi
 
