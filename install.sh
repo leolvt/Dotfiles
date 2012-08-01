@@ -17,6 +17,11 @@ echo "Installing custom login files"
 ln -s $PWD/login/ ~/.login
 echo "Installing Vim config files (vimrc)"
 ln -s $PWD/vimrc ~/.vimrc
+echo "Installing font configuration file (.fonts.conf)"
+ln -s $PWD/fonts.conf ~/.fonts.conf
+echo "Installing X config files (xprofile, Xresources)"
+ln -s $PWD/xprofile ~/.xprofile
+ln -s $PWD/Xresources ~/.Xresources
 
 if [ ! -d "~/.vim/bundle/vundle" ]; then
     echo "Installing Vim Vundle script, to manage vim plugins."

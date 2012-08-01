@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#
+# ~/.xprofile
+#
+# Executed by gdm at login
+#
+#xmodmap -e "pointer=1 2 3 6 7 4 5" # set mouse buttons up correctly
+#xsetroot -solid black              # sets the background to black
+#
+#setxkbmap "us(intl)"
+
+xrdb -merge ~/.Xresources &
