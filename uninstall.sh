@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if [ -f ~/.bashrc ] && [ ! -h ~/.bashrc ]; then
+    echo "ERROR: ~/.bashrc already exists and is not a symlink. Aborting!"
+    exit 1
+elif [ ! -f ~/.bashrc ]; then
+    echo "WARNING: No ~/.bashrc found. Terminating."
+    exit 0
+fi
+
 echo "Uninstalling Bash config files (bashrc, bash_login, bash_logout)"
 unlink ~/.bash_login
 unlink ~/.bash_logout

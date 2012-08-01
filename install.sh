@@ -1,8 +1,15 @@
 #!/bin/bash
 
 if [ ! -f "bashrc" ]; then
-    echo "Didn't find dotfiles..."
-    echo "You must run the install script inside the Dotfiles directory."
+    echo "ERROR: Didn't find dotfiles..."
+    echo "  You must run the install script inside the Dotfiles directory."
+    exit 1
+fi
+
+if [ -f ~/.bashrc ]; then
+    echo "ERROR: ~/.bashrc already exists. Aborting!"
+    echo "  If you are trying to reinstall the files, you should "
+    echo "  run ./uninstall.sh before."
     exit 1
 fi
 
