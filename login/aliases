@@ -84,6 +84,9 @@ export LESS='-i -w -g -M -R -PM ?f%f:Standard Input.?lb - line %lt?L of %L:.:.?p
 # Some useful aliases
 #---------------------
 
+# Make aliases available to sudo:
+alias sudo='sudo -i '
+
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'

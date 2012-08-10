@@ -8,8 +8,8 @@ elif [ ! -f ~/.bashrc ]; then
     exit 0
 fi
 
-echo "Uninstalling Bash config files (bashrc, bash_login, bash_logout)"
-unlink ~/.bash_login
+echo "Uninstalling Bash config files (bashrc, bash_logout)"
+#unlink ~/.bash_login
 unlink ~/.bash_logout
 unlink ~/.bashrc
 echo "Uninstalling Git config files (gitconfig, gitignore-global)"

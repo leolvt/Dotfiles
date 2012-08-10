@@ -13,5 +13,5 @@
     br     = branch
     co    = checkout
     ci    = commit
-    em    = "!${EDITOR:-vim} $(git ls-files --modified)"
+    em    = "!${EDITOR:-vim -p} $(git ls-files --modified)"
     st    = status --branch 

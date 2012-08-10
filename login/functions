@@ -59,6 +59,8 @@ function ship()
 # General Purpose functions
 #-------------------------------------------------------------
 
+## TODO: Many of these functions don't work anymore. Must fix it!
+
 #------------------------------------------------------------------------------#
 
 # Prints the last minute Load Rate

@@ -1,18 +1,18 @@
 #=============================================================
 #
-# PERSONAL $HOME/.bashrc FILE for bash (tested on 4.2)
-# By Leonardo Vilela Teixeira <leolvt@gmail.com>
-# TODO: Copied from Emmanuel Rouat <emmanuel.rouat@wanadoo.fr>
+# Bash Configuration File (.bashrc) 
+# ---------------------------------
 #
-# Last modified: Fri Sep  9 21:39:01 BRT 2011
+# Author: Leonardo Vilela Teixeira <leolvt@gmail.com>
+# Inspired by many bashrc files found on the internet and also
+# on system default bashrc.
 #
-# This file is read (normally) by interactive shells only.
-# Here is the place to define your aliases, functions and
-# other interactive features like your prompt.
+# Great part of this file was inspired (copied) from the sample
+# .bashrc from Emmanuel Rouat <emmanuel.rouat@wanadoo.fr> which
+# you can find at http://tldp.org/LDP/abs/html/sample-bashrc.html
 #
 # The majority of the code here assumes you are on a GNU 
-# system (most likely a Linux box) and is based on code found
-# on Usenet or internet. 
+# system (most likely a Linux box).
 #
 #=============================================================
 #
@@ -33,7 +33,9 @@
 # If not running interactively, don't do anything
 #-------------------------------------------------------------
 
-# If not running interactively, don't do anything
+# Added two method for checking if current session is interactive.
+# Probably an overkill, but not sure of which one is better or
+# more guaranteed to exist.
 [ -z "$PS1" ] && return
 [[ $- != *i* ]] && return
 
@@ -41,11 +43,23 @@
 # 1) Update PATH and other envvars.
 #-------------------------------------------------------------
 
-LOCALPATH=~/.local/bin:~/Tools:~/.gem/ruby/1.9.1/bin
+# Add some places to the PATH variable. Currently, only the 
+# local bin and ruby gems folder.
+LOCALPATH=~/.local/bin:~/.gem/ruby/1.9.1/bin
 export PATH=$PATH:$LOCALPATH
+
+# Local LaTeX files under this dir:
 export TEXMFHOME=~/.texmf
-export EDITOR=vim
+
+# Default editor is vim and multiple files are opened in multiple
+# tabs
+export EDITOR="vim -p"
+
+# Some java stuff intended to make its look and feel better and
+# more similar to GTK
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+
+# Perl variables used to locate packages
 export PERL_LOCAL_LIB_ROOT="/home/vilela/.local";
 export PERL_MB_OPT="--install_base /home/vilela/.local";
 export PERL_MM_OPT="INSTALL_BASE=/home/vilela/.local";
@@ -55,21 +69,20 @@ export PERL5LIB="/home/vilela/.local/lib/perl5/x86_64-linux-thread-multi:/home/v
 # 2) Source global definitions (if any)
 #-------------------------------------------------------------
 
-# TODO: Instead of sourcing, copy the relevant contents
-if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
-fi
+# Used to source global bashrc file here, but since many of
+# those also source the user's .bashrc, it would cause a double 
+# sourcing of this file. So, instead, copy any stuff you want to 
+# this file.
 
 # Load profiles from /etc/profile.d
+# Remember: The /etc/profile loads all the /etc/profile.d/*.sh 
+# files. Here we load only the *.bash ones. But even that may 
+# be wrong if the same script has a .sh and a .bash version.
 # TODO: Check for duplicated ENVVARS and PATH
 if test -d /etc/profile.d/; then
     for profile in /etc/profile.d/*.bash; do
         test -r "$profile" && . "$profile"
     done
-
-	#for profile in /etc/profile.d/*.bash; do
-		#test -r "$profile" && . "$profile"
-	#done
 
 	unset profile
 fi
@@ -96,10 +109,8 @@ fi
 #-------------------------------------------------------------
 
 
-# Don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
-
-# ... and ignore same sucessive entries.
+# Don't put duplicate lines in the history and ignore same 
+# sucessive entries.See bash(1) for more options.
 export HISTCONTROL=ignoreboth
 
 # History Ignore
@@ -142,15 +153,7 @@ cyan='\[\033[0;36m\]'
 CYAN='\[\033[1;36m\]'
 white='\[\033[0;37m\]'
 WHITE='\[\033[1;37m\]'
-
-NC='\[\033[0m\]'              # No Color
-
-# Some remote/local Highlight
-if [[ "${DISPLAY%%:0*}" != "" ]]; then  
-    HILIT=${CYAN}   # remote machine: prompt will be partly red
-else
-    HILIT=${PURPLE}  # local machine: prompt will be partly cyan
-fi
+NC='\[\033[0m\]' # No Color
 
 # And a nice function to print them out
 function PRINT_COLORS
@@ -173,6 +176,13 @@ function PRINT_COLORS
 	echo -e "${WHITE} WHITE"
 	echo -e "${NC} NC"
 }
+
+# Some remote/local Highlight
+if [[ "${DISPLAY%%:0*}" != "" ]]; then  
+    HILIT=${CYAN}   # remote machine: prompt will be partly red
+else
+    HILIT=${PURPLE}  # local machine: prompt will be partly cyan
+fi
 
 
 #-------------------------------------------------------------
@@ -212,10 +222,11 @@ function setupprompt()
     MY_PROMPT="$MY_PROMPT$tclr_sym $SYMB $tclr_brkt> $tclr_cmds"
 
     case $TERM in
-        *term | rxvt | linux )
+        *term | rxvt* | gnome* | linux | screen )
     		PS1="${MY_PROMPT}" ;;
-#        linux )
-#            PS1="${HILIT}[\A]$NC\n[\u@\h \#] \W > " ;;
+        #screen)
+            #PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033_%s@%s:%s\033\\" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
+            #;;
         * )
             PS1="[\A]\n[\u@\h \#] \W > " ;;
     esac
@@ -236,6 +247,10 @@ function fastprompt()
             PS1="[\h] \W > " ;;
     esac
 }
+
+PS2='> '
+PS3='= '
+PS4='+ '
 
 #-------------------------------------------------------------
 # 7) Bash Completion

@@ -38,5 +38,9 @@ echo -e "    ${cyan}${UP}"
 echo -e ""
 echo -e "    ${WHITE}Bem-vindo,${BLUE} ${USER}${WHITE} to${green} ${HOSTNAME}"
 echo -e ""
+echo -e "${GREEN}#-----------------------------------------------------------------------------#${NC}"
+echo -e "\n${WHITE}Fortune of the day: \n${NC}"
+#cowsay `fortune -sa`
+fortune -as
+echo -e ""
 echo -e "${RED}#=============================================================================#${NC}"
-

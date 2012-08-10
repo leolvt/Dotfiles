@@ -13,8 +13,8 @@ if [ -f ~/.bashrc ]; then
     exit 1
 fi
 
-echo "Installing Bash config files (bashrc, bash_login, bash_logout)"
-ln -s $PWD/bash_login ~/.bash_login
+echo "Installing Bash config files (bashrc, bash_logout)"
+#ln -s $PWD/bash_login ~/.bash_login
 ln -s $PWD/bash_logout ~/.bash_logout
 ln -s $PWD/bashrc ~/.bashrc
 echo "Installing Git config files (gitconfig, gitignore-global)"
