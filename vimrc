@@ -42,6 +42,7 @@ Bundle 'fs111/pydoc.vim'
 Bundle 'alfredodeza/pytest.vim'
  
 " Plugins from vim-scripts.org
+Bundle 'clang-complete'
 Bundle 'scratch.vim'
 Bundle 'Rainbow-Parenthesis'
 Bundle 'pep8'

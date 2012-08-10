@@ -87,6 +87,13 @@ if test -d /etc/profile.d/; then
 	unset profile
 fi
 
+# If the Command Not Found hook from pkgfile is available, source it!
+# Note: pkgfile is a package from Arch Linux.
+
+if [ -f /usr/share/doc/pkgfile/command-not-found.bash ]; then
+    . /usr/share/doc/pkgfile/command-not-found.bash 
+fi
+
 #-------------------------------------------------------------
 # 3) Source local definitions, aliases and functions (if any)
 #-------------------------------------------------------------
