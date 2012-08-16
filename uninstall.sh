@@ -19,6 +19,11 @@ echo "Uninstalling custom login files"
 unlink ~/.login
 echo "Uninstalling Vim config files (vimrc)"
 unlink ~/.vimrc
+unlink ~/.vim/bundles.vim
+echo "Uninstalling Vim Vundle script, to manage vim plugins."
+echo "  Note that the installed bundles will remain installed, but"
+echo "  not working, since Vundle will be uninstalled..."
+rm -rf ~/.vim/bundle/vundle
 echo "Uninstalling font configuration file (.fonts.conf)"
 unlink ~/.fonts.conf
 echo "Uninstalling X config files (xprofile, Xresources)"

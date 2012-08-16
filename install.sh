@@ -23,7 +23,10 @@ ln -s $PWD/gitignore-global ~/.gitignore-global
 echo "Installing custom login files"
 ln -s $PWD/login/ ~/.login
 echo "Installing Vim config files (vimrc)"
+mkdir -p ~/.vim
 ln -s $PWD/vimrc ~/.vimrc
+ln -s $PWD/bundles.vim ~/.vim/bundles.vim
+#vim -u ~/.vim/bundles.vim +BundleInstall +q
 echo "Installing font configuration file (.fonts.conf)"
 ln -s $PWD/fonts.conf ~/.fonts.conf
 echo "Installing X config files (xprofile, Xresources)"

@@ -12,43 +12,25 @@
 " We want an improved editor, right?
 set nocompatible 
 
+" Load bundles
+source ~/.vim/bundles.vim
+
+" Activate filetype and indent
+filetype plugin indent on 
+
 " ==========================
-" Vundle :  Manages plugins
+" Clang-Complete config
 " ==========================
-
-filetype off " required
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" Let Vundle manage Vundle!
-Bundle 'gmarik/vundle'
-
-" Let Vundle manage the plugins we want!
-
-" Plugins directly from github
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'mileszs/ack.vim'
-Bundle 'msanders/snipmate.vim'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-git'
-"Bundle 'ervandew/supertab'
-Bundle 'kevinw/pyflakes-vim'
-Bundle 'sjl/gundo.vim'
-Bundle 'fs111/pydoc.vim'
-Bundle 'alfredodeza/pytest.vim'
- 
-" Plugins from vim-scripts.org
-Bundle 'clang-complete'
-Bundle 'scratch.vim'
-Bundle 'Rainbow-Parenthesis'
-Bundle 'pep8'
-Bundle 'TaskList.vim'
-
-filetype plugin indent on " re-activate
+let g:clang_complete_copen=1
+let g:clang_periodic_quickfix=1
+let g:clang_snippets=1
+let g:clang_snippets_engine='snipmate'
+let g:clang_use_library=1
+let g:clang_close_preview=1
+"let g:clang_complete_macros=1
+"let g:clang_complete_patterns=1
+" TODO: Consider mapping some key to g:ClangUpdateQuickFix() and removing
+" the periodic_quick fix option.
 
 " ==========================
 " Colors and Appearance
