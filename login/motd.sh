@@ -40,7 +40,7 @@ echo -e "    ${WHITE}Bem-vindo,${BLUE} ${USER}${WHITE} to${green} ${HOSTNAME}"
 echo -e ""
 echo -e "${GREEN}#-----------------------------------------------------------------------------#${NC}"
 echo -e "\n${WHITE}Fortune of the day: \n${NC}"
-#cowsay `fortune -s`
-fortune -s
+#cowsay `fortune -cs`
+fortune -cs
 echo -e ""
 echo -e "${RED}#=============================================================================#${NC}"
