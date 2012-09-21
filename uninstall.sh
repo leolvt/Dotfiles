@@ -9,23 +9,23 @@ elif [ ! -f ~/.bashrc ]; then
 fi
 
 echo "Uninstalling Bash config files (bashrc, bash_logout)"
-#unlink ~/.bash_login
-unlink ~/.bash_logout
-unlink ~/.bashrc
+rm ~/.bash_login
+rm ~/.bash_logout
+rm ~/.bashrc
 echo "Uninstalling Git config files (gitconfig, gitignore-global)"
-unlink ~/.gitconfig
-unlink ~/.gitignore-global
+rm ~/.gitconfig
+rm ~/.gitignore-global
 echo "Uninstalling custom login files"
-unlink ~/.login
+rm ~/.login
 echo "Uninstalling Vim config files (vimrc)"
-unlink ~/.vimrc
-unlink ~/.vim/bundles.vim
+rm ~/.vimrc
+rm ~/.vim/bundles.vim
 echo "Uninstalling Vim Vundle script, to manage vim plugins."
 echo "  Note that the installed bundles will remain installed, but"
 echo "  not working, since Vundle will be uninstalled..."
 rm -rf ~/.vim/bundle/vundle
 echo "Uninstalling font configuration file (.fonts.conf)"
-unlink ~/.fonts.conf
+rm $XDG_CONFIG_HOME/fontconfig/fonts.conf
 echo "Uninstalling X config files (xprofile, Xresources)"
-unlink ~/.xprofile
-unlink ~/.Xresources
+rm ~/.xprofile
+rm ~/.Xresources

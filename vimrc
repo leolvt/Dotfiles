@@ -19,20 +19,6 @@ source ~/.vim/bundles.vim
 filetype plugin indent on 
 
 " ==========================
-" Clang-Complete config
-" ==========================
-let g:clang_complete_copen=1
-let g:clang_periodic_quickfix=1
-let g:clang_snippets=1
-let g:clang_snippets_engine='snipmate'
-let g:clang_use_library=1
-let g:clang_close_preview=1
-"let g:clang_complete_macros=1
-"let g:clang_complete_patterns=1
-" TODO: Consider mapping some key to g:ClangUpdateQuickFix() and removing
-" the periodic_quick fix option.
-
-" ==========================
 " Colors and Appearance
 " ==========================
 
@@ -94,6 +80,29 @@ if has("autocmd")
                 \ if line("'\"") > 1 && line ("'\"") <= line("$") |
                 \   exe "normal! g`\"" |
                 \ endif
+
+    " Clang-Complete config
+    " ---------------------
+    fun! SetClangCompleteOptions()
+        " Don't strip on these filetypes
+        let g:clang_complete_copen=1
+        let g:clang_periodic_quickfix=1
+        let g:clang_snippets=1
+        let g:clang_snippets_engine='snipmate'
+        let g:clang_use_library=1
+        let g:clang_close_preview=1
+        "let g:clang_complete_macros=1
+        "let g:clang_complete_patterns=1
+        " TODO: Consider mapping some key to g:ClangUpdateQuickFix() and removing
+        " the periodic_quick fix option.
+
+        nmap <F5> :call g:ClangUpdateQuickFix()<CR>:copen
+    endfun
+
+    augroup clangCompleteOptionsSetup
+        au!
+        au FileType c,cpp call SetClangCompleteOptions()
+    augroup END
 endif
 
 " ==========================

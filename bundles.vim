@@ -14,24 +14,24 @@ Bundle 'gmarik/vundle'
 " Plugins directly from github
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'mileszs/ack.vim'
+Bundle 'scrooloose/syntastic'
 Bundle 'msanders/snipmate.vim'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-git'
-"Bundle 'ervandew/supertab'
-Bundle 'kevinw/pyflakes-vim'
 Bundle 'sjl/gundo.vim'
 Bundle 'fs111/pydoc.vim'
 Bundle 'alfredodeza/pytest.vim'
 Bundle 'Rip-Rip/clang_complete'
+Bundle 'kien/rainbow_parentheses.vim'
+"Bundle 'kevinw/pyflakes-vim' " -> syntastic
+"Bundle 'mileszs/ack.vim'
  
 " Plugins from vim-scripts.org
-"Bundle 'clang-complete'
 Bundle 'scratch.vim'
-Bundle 'Rainbow-Parenthesis'
-Bundle 'pep8'
 Bundle 'TaskList.vim'
+"Bundle 'Rainbow-Parenthesis' "kien/rainbow_parentheses.vim 
+"Bundle 'pep8' " -> Syntastic
 

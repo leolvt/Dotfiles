@@ -14,7 +14,7 @@ if [ -f ~/.bashrc ]; then
 fi
 
 echo "Installing Bash config files (bashrc, bash_logout)"
-#ln -s $PWD/bash_login ~/.bash_login
+ln -s $PWD/bash_login ~/.bash_login
 ln -s $PWD/bash_logout ~/.bash_logout
 ln -s $PWD/bashrc ~/.bashrc
 echo "Installing Git config files (gitconfig, gitignore-global)"
@@ -28,7 +28,8 @@ ln -s $PWD/vimrc ~/.vimrc
 ln -s $PWD/bundles.vim ~/.vim/bundles.vim
 #vim -u ~/.vim/bundles.vim +BundleInstall +q
 echo "Installing font configuration file (.fonts.conf)"
-ln -s $PWD/fonts.conf ~/.fonts.conf
+mkdir -p $XDG_CONFIG_HOME/fontconfig
+ln -s $PWD/fonts.conf $XDG_CONFIG_HOME/fontconfig/fonts.conf
 echo "Installing X config files (xprofile, Xresources)"
 ln -s $PWD/xprofile ~/.xprofile
 ln -s $PWD/Xresources ~/.Xresources
