@@ -18,13 +18,21 @@ source ~/.vim/bundles.vim
 " Activate filetype and indent
 filetype plugin indent on 
 
+" Set default encoding
+set encoding=utf-8
+
+" Explicitly tell Vim that the terminal supports 256 colors
+set t_Co=256 
+
 " ==========================
 " Colors and Appearance
 " ==========================
 
 " Set theme
-set background=dark
-colo desert
+colo molokai
+hi Normal ctermbg=none
+hi NonText ctermbg=none
+hi Pmenusel ctermbg=26 ctermfg=51
 
 set ruler
 set nu
@@ -81,29 +89,52 @@ if has("autocmd")
                 \   exe "normal! g`\"" |
                 \ endif
 
+    " Rainbow Parenthesis
+    " -------------------
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+    au Syntax * RainbowParenthesesLoadBraces   
+
     " Clang-Complete config
     " ---------------------
     fun! SetClangCompleteOptions()
         " Don't strip on these filetypes
-        let g:clang_complete_copen=1
-        let g:clang_periodic_quickfix=1
+        let g:clang_complete_copen=0
+        let g:clang_periodic_quickfix=0
         let g:clang_snippets=1
         let g:clang_snippets_engine='snipmate'
         let g:clang_use_library=1
         let g:clang_close_preview=1
         "let g:clang_complete_macros=1
         "let g:clang_complete_patterns=1
-        " TODO: Consider mapping some key to g:ClangUpdateQuickFix() and removing
         " the periodic_quick fix option.
-
-        nmap <F5> :call g:ClangUpdateQuickFix()<CR>:copen
+        "nmap <F5> :call g:ClangUpdateQuickFix()<CR>:copen
     endfun
 
-    augroup clangCompleteOptionsSetup
+    augroup setup_for_C_Cpp
         au!
         au FileType c,cpp call SetClangCompleteOptions()
     augroup END
 endif
+
+" ==========================
+" Syntastic config
+" ==========================
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_enable_balloons = 1
+let g:syntastic_enable_highlighting = 1
+let g:syntastic_auto_loc_list=1
+
+" ==========================
+" Powerline config
+" ==========================
+set laststatus=2
+let g:Powerline_cache_enabled = 1
+let g:Powerline_symbols = 'unicode'
+"let g:Powerline_theme = 'skwp'
+"let g:Powerline_colorscheme = 'skwp'
 
 " ==========================
 " Add the virtualenv's site-packages to vim path
