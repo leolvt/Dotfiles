@@ -43,9 +43,9 @@
 # 1) Update PATH and other envvars.
 #-------------------------------------------------------------
 
-# Add some places to the PATH variable. Currently, only the 
-# local bin and ruby gems folder.
-LOCALPATH=~/.local/bin:~/.gem/ruby/1.9.1/bin
+# Add some places to the PATH variable. 
+# Currently, only the local bin.
+LOCALPATH=~/.local/bin
 export PATH=$PATH:$LOCALPATH
 
 # Local LaTeX files under this dir:
@@ -78,7 +78,6 @@ export PERL5LIB="/home/vilela/.local/lib/perl5/x86_64-linux-thread-multi:/home/v
 # Remember: The /etc/profile loads all the /etc/profile.d/*.sh 
 # files. Here we load only the *.bash ones. But even that may 
 # be wrong if the same script has a .sh and a .bash version.
-# TODO: Check for duplicated ENVVARS and PATH
 if test -d /etc/profile.d/; then
     for profile in /etc/profile.d/*.bash; do
         test -r "$profile" && . "$profile"
@@ -89,7 +88,6 @@ fi
 
 # If the Command Not Found hook from pkgfile is available, source it!
 # Note: pkgfile is a package from Arch Linux.
-
 if [ -f /usr/share/doc/pkgfile/command-not-found.bash ]; then
     . /usr/share/doc/pkgfile/command-not-found.bash 
 fi
@@ -163,7 +161,7 @@ WHITE='\[\033[1;37m\]'
 NC='\[\033[0m\]' # No Color
 
 # And a nice function to print them out
-function PRINT_COLORS
+function printTerminalColors
 {
 	echo -e "${gray} gray"
 	echo -e "${GRAY} GRAY"
@@ -278,5 +276,4 @@ fi
 if [ -f ~/.login/on_login ]; then
     . ~/.login/on_login
 fi
-
 

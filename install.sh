@@ -26,7 +26,6 @@ echo "Installing Vim config files (vimrc)"
 mkdir -p ~/.vim
 ln -s $PWD/vimrc ~/.vimrc
 ln -s $PWD/bundles.vim ~/.vim/bundles.vim
-#vim -u ~/.vim/bundles.vim +BundleInstall +q
 echo "Installing font configuration file (.fonts.conf)"
 mkdir -p $XDG_CONFIG_HOME/fontconfig
 ln -s $PWD/fonts.conf $XDG_CONFIG_HOME/fontconfig/fonts.conf
@@ -37,4 +36,6 @@ ln -s $PWD/Xresources ~/.Xresources
 if [ ! -d "~/.vim/bundle/vundle" ]; then
     echo "Installing Vim Vundle script, to manage vim plugins."
     git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+    echo "Installing Vim Bundles"
+    vim -u ~/.vim/bundles.vim +BundleInstall +q
 fi

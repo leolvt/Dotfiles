@@ -1,14 +1,12 @@
 #!/bin/bash
-#define the filename to use as output
-#motd="~/.login/motd"
-# Collect useful information about your system
-# $USER is automatically defined
+
 HOSTNAME=`uname -n`
 KERNEL=`uname -r`
 CPU=`uname -p`
 ARCH=`uname -m`
 DATELINE=`~/.login/data_hora.pl 1`
 UP=$(uptime | sed -e 's/.*up\(.*\)/Up\1/')
+
 # The different colours as variables
 gray="\033[00;30m"
 GRAY="\033[01;30m"

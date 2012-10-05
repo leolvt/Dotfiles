@@ -12,7 +12,7 @@
     ui = auto
 
 [alias]
-    br     = branch
+    br    = branch
     co    = checkout
     ci    = commit
     em    = "!${EDITOR:-vim -p} $(git ls-files --modified)"

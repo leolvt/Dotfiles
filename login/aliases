@@ -14,11 +14,7 @@ alias ckear='clear'
 alias cçear='clear'
 alias mroe='more'
 alias pdw=pwd
-#alias xs='cd'
-#alias vf='cd'
 alias moer='more'
-#alias moew='more'
-#alias kk='ll'
 
 #-------------------
 # Safety Aliases
@@ -77,7 +73,6 @@ if [[ -f /usr/bin/lesspipe.sh ]]; then
 fi
 
 #export LESS='-i -N -w  -z-4 -g -e -M -X -F -R -P%t?f%f :stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
-
 export LESS='-i -w -g -M -R -PM ?f%f:Standard Input.?lb - line %lt?L of %L:.:.?pB ( %pB\% ):.'
 
 #---------------------
