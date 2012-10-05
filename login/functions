@@ -259,6 +259,30 @@ shot ()
 }
 
 #-------------------------------------------------------------
+# Cleaning functions
+#-------------------------------------------------------------
+
+texClean() {
+    if ask "Really clean tex output files? "; then 
+        rm -f *.toc *.aux *.log *.cp *.fn *.tp *.vr *.pg *.ky *.lof *.lot  *.lsb *.lsg;
+        echo "Cleaned.";
+    else
+        echo "Not cleaned.";
+    fi
+}
+
+#------------------------------------------------------------------------------#
+
+clean() {
+    if ask "Really clean this directory? "; then 
+        rm -f \#* *~ .*~ *.bak .*.bak  *.tmp .*.tmp core a.out;
+        echo "Cleaned.";
+    else
+        echo "Not cleaned.";
+    fi
+}
+
+#-------------------------------------------------------------
 # Make the following commands run in background automatically:
 #-------------------------------------------------------------
 
