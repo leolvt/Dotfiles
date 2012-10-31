@@ -2,18 +2,18 @@
 # Git helpers:
 #-------------------------------------------------------------
 
-function hack()
+function sink()
 {
     B="\033[01;34m"
     G="\033[01;32m"
-    R="\033[01;31m" 
+    R="\033[01;31m"
     O="\033[00;33m"
     Y="\033[01;33m"
     C="\033[00;36m"
     P="\033[01;35m"
     W="\033[00;37m"
     NC="\033[00;0m"
-    PROMPT="$Y>> ${O}[${R}HACKING${B}${O}] ${Y}>>${Y}" 
+    PROMPT="$Y>> ${O}[${R}SINK${B}${O}] ${Y}>>${Y}"
     echo -e "$PROMPT Getting branch name... $W"
     CURRENT=`git branch | grep '\*' | awk '{print $2}'`
     echo -e "$PROMPT Checking out 'master' branch... $W"
@@ -23,7 +23,7 @@ function hack()
     echo -e "$PROMPT Going back to '$CURRENT' branch... $W"
     git checkout ${CURRENT}
     echo -e "$PROMPT Rebasing '$CURRENT' onto 'master'... $W"
-    git rebase master
+    git rebase -i master
     echo -e "$PROMPT DONE!$NC"
     echo ""
 }
@@ -32,15 +32,17 @@ function hack()
 
 function ship()
 {
+    sink
+
     B="\033[01;34m"
     G="\033[01;32m"
-    R="\033[01;31m" 
+    R="\033[01;31m"
     O="\033[00;33m"
     P="\033[01;35m"
     Y="\033[01;33m"
     W="\033[00;37m"
     NC="\033[00;0m"
-    PROMPT="$Y>> ${O}[${G}SHIPPING${B}${O}] ${Y}>>${Y}" 
+    PROMPT="$Y>> ${O}[${G}SHIP${B}${O}] ${Y}>>${Y}"
     echo -e "$PROMPT Getting branch name... $W"
     CURRENT=`git branch | grep '\*' | awk '{print $2}'`
     echo -e "$PROMPT Checking out 'master' branch... $W"
@@ -65,7 +67,7 @@ function ship()
 
 # Prints the last minute Load Rate
 pLoad()
-{ 
+{
 	uptime | sed -e "s_.*: \([^,]*\).*_\1_"
 }
 
@@ -86,7 +88,7 @@ function xtitle()      # Adds some text in the terminal frame.
     case "$TERM" in
         *term | rxvt)
             echo -n -e "\033]0;$*\007" ;;
-        *)  
+        *)
             ;;
     esac
 }
@@ -125,7 +127,7 @@ add-alias ()
 #
 #	repeat 10 echo foo
 repeat ()
-{ 
+{
     local count="$1" i;
     shift;
     for i in $(_seq 1 "$count");
@@ -138,7 +140,7 @@ repeat ()
 
 # Subfunction needed by `repeat'.
 _seq ()
-{ 
+{
     local lower upper output;
     lower=$1 upper=$2;
 
@@ -263,8 +265,9 @@ shot ()
 #-------------------------------------------------------------
 
 texClean() {
-    if ask "Really clean tex output files? "; then 
-        rm -f *.toc *.aux *.log *.cp *.fn *.tp *.vr *.pg *.ky *.lof *.lot  *.lsb *.lsg;
+    if ask "Really clean tex output files? "; then
+        rm -f *.toc *.aux *.log *.cp *.fn *.tp *.vr *.pg *.ky *.lof *.lot  *.lsb
+        rm -f *.lsg *.bbl *.blg;
         echo "Cleaned.";
     else
         echo "Not cleaned.";
@@ -274,7 +277,7 @@ texClean() {
 #------------------------------------------------------------------------------#
 
 clean() {
-    if ask "Really clean this directory? "; then 
+    if ask "Really clean this directory? "; then
         rm -f \#* *~ .*~ *.bak .*.bak  *.tmp .*.tmp core a.out;
         echo "Cleaned.";
     else
@@ -326,7 +329,7 @@ Usage: fstr [-i] \"pattern\" [\"filename pattern\"] "
         return;
     fi
     find . -type f -name "${2:-*}" -print0 | \
-    xargs -0 egrep --color=always -sn ${case} "$1" 2>&- | more 
+    xargs -0 egrep --color=always -sn ${case} "$1" 2>&- | more
 
 }
 
@@ -363,13 +366,13 @@ function lowercase()  # move filenames to lowercase
 
 function swap()  # Swap 2 filenames around, if they exist
 {                #(from Uzi's bashrc).
-    local TMPFILE=tmp.$$ 
+    local TMPFILE=tmp.$$
 
     [ $# -ne 2 ] && echo "swap: 2 arguments needed" && return 1
     [ ! -e $1 ] && echo "swap: $1 does not exist" && return 1
     [ ! -e $2 ] && echo "swap: $2 does not exist" && return 1
 
-    mv "$1" $TMPFILE 
+    mv "$1" $TMPFILE
     mv "$2" "$1"
     mv $TMPFILE "$2"
 }
@@ -463,10 +466,10 @@ function ask()          # See 'killps' for example of use.
 #------------------------------------------------------------------------------#
 
 function corename()   # Get name of app that created a corefile.
-{ 
+{
     for file ; do
         echo -n $file : ; gdb --core=$file --batch | head -1
-    done 
+    done
 }
 
 #------------------------------------------------------------------------------#

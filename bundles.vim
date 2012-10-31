@@ -28,8 +28,12 @@ Bundle 'fs111/pydoc.vim'
 Bundle 'alfredodeza/pytest.vim'
 Bundle 'Rip-Rip/clang_complete'
 Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'Nemo157/glsl.vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'fholgado/minibufexpl.vim'
 "Bundle 'mileszs/ack.vim'
- 
+
 " Plugins from vim-scripts.org
 Bundle 'scratch.vim'
 Bundle 'TaskList.vim'
+Bundle 'Smart-Tabs'
