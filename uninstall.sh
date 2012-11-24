@@ -19,6 +19,7 @@ echo "Uninstalling custom login files"
 rm ~/.login
 echo "Uninstalling Vim config files (vimrc)"
 rm ~/.vimrc
+rm ~/.vim/colors/molokai-glass.vim
 rm ~/.vim/bundles.vim
 echo "Uninstalling Vim Vundle script, to manage vim plugins."
 echo "  Note that the installed bundles will remain installed, but"

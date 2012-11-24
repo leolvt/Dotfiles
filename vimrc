@@ -53,6 +53,8 @@ set foldlevelstart=99  " Remove folds
 set mouse=a
 set mousehide
 set textwidth=80
+set listchars=tab:→_
+set nolist
 
 " ==========================
 " Tab and indent behaviour
@@ -61,9 +63,9 @@ set textwidth=80
 set tabstop=4
 set backspace=indent,eol,start
 set shiftwidth=4
-"set smarttab
+set smarttab
 set noexpandtab
-set cino=N-s,(s,us
+"set cino=N-s,(s,us
 
 " ==========================
 " Search Behaviour
@@ -74,6 +76,12 @@ set smartcase
 set incsearch
 set hlsearch
 
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 " ==========================
 " Auto Commands
 " ==========================
@@ -128,23 +136,31 @@ if has("autocmd")
 	" ---------------------------------
 
 	" Highlight extra spaces
-	highlight ExtraWhitespace ctermbg=red guibg=red
 	augroup WhitespaceMatch
 		autocmd!
-		autocmd BufWinEnter * let w:ws_match_id =
-					\ matchadd('ExtraWhitespace', '\s\+$')
+		autocmd BufWinEnter * call s:ToggleWhitespaceMatch('n')
 		autocmd InsertEnter * call s:ToggleWhitespaceMatch('i')
 		autocmd InsertLeave * call s:ToggleWhitespaceMatch('n')
-		autocmd Syntax * syn match ExtraWhitespace / \+\ze\t/
+		"autocmd Syntax * syn match ExtraWhitespace / \+\ze\t/
+		"autocmd Syntax * syn match ExtraWhitespace /\%(^\|\t\)\@<!\t/
 	augroup END
+
 	function! s:ToggleWhitespaceMatch(mode)
-		let pattern = (a:mode == 'i') ? '\s\+\%#\@<!$' : '\s\+$'
+		let pEOL = (a:mode == 'i') ?
+					\ '\s\+\%#\@<!$' :
+					\ '\s\+$'
+		let pWrongTab = (a:mode == 'i') ?
+					\ '\%(^\t*\)\@<![ \t]*\t[ \t]*\%#\@<!' :
+					\ '\%(^\t*\)\@<![ \t]*\t[ \t]*'
+
+		let pattern = '\%('.pEOL.'\)' . '\|' .
+					\ '\%('.pWrongTab.'\)'
 		if exists('w:ws_match_id')
 			call matchdelete(w:ws_match_id)
-			call matchadd('ExtraWhitespace', pattern, 10, w:ws_match_id)
+			call matchadd('WarningMsg', pattern, 10, w:ws_match_id)
 		else
 			" Something went wrong, try to be graceful.
-			let w:ws_match_id =  matchadd('ExtraWhitespace', pattern)
+			let w:ws_match_id =  matchadd('WarningMsg', pattern)
 		endif
 	endfunction
 
@@ -213,7 +229,7 @@ endif
 " MiniBufExplorer config
 " ==========================
 let g:miniBufExplUseSingleClick = 1
-"let g:miniBufExplCloseOnSelect = 1
+let g:miniBufExplCloseOnSelect = 1
 "let g:miniBufExplorerMoreThanOne=1
 
 " ==========================

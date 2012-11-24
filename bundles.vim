@@ -36,4 +36,3 @@ Bundle 'fholgado/minibufexpl.vim'
 " Plugins from vim-scripts.org
 Bundle 'scratch.vim'
 Bundle 'TaskList.vim'
-Bundle 'Smart-Tabs'

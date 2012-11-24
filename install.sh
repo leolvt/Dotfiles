@@ -23,8 +23,9 @@ ln -s $PWD/gitignore-global ~/.gitignore-global
 echo "Installing custom login files"
 ln -s $PWD/login/ ~/.login
 echo "Installing Vim config files (vimrc)"
-mkdir -p ~/.vim
+mkdir -p ~/.vim/colors
 ln -s $PWD/vimrc ~/.vimrc
+ln -s $PWD/molokai-glass.vim ~/.vim/colors/molokai-glass.vim
 ln -s $PWD/bundles.vim ~/.vim/bundles.vim
 echo "Installing font configuration file (.fonts.conf)"
 mkdir -p $XDG_CONFIG_HOME/fontconfig
