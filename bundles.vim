@@ -31,6 +31,7 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'Nemo157/glsl.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'fholgado/minibufexpl.vim'
+Bundle 'altercation/vim-colors-solarized'
 "Bundle 'mileszs/ack.vim'
 
 " Plugins from vim-scripts.org

@@ -46,7 +46,8 @@
 # Add some places to the PATH variable. 
 # Currently, only the local bin.
 LOCALPATH=~/.local/bin
-export PATH=$PATH:$LOCALPATH
+RUBY_PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin
+export PATH=$PATH:$LOCALPATH:$RUBY_PATH
 
 # Local LaTeX files under this dir:
 export TEXMFHOME=~/.texmf
@@ -134,8 +135,8 @@ shopt -s checkwinsize
 
 # Enable color support of ls
 if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
-    if [ -x ~/.login/dircolors ]; then
-        eval "`dircolors ~/.login/dircolors`"
+    if [ -f ~/.login/solarize.dircolors ]; then
+        eval "`dircolors ~/.login/solarize.dircolors`"
     else
         eval "`dircolors -b`"
     fi
@@ -184,9 +185,9 @@ function printTerminalColors
 
 # Some remote/local Highlight
 if [[ "${DISPLAY%%:0*}" != "" ]]; then  
-    HILIT=${CYAN}   # remote machine: prompt will be partly red
+    HILIT=${cyan}   # remote machine: prompt will be partly red
 else
-    HILIT=${PURPLE}  # local machine: prompt will be partly cyan
+    HILIT=${purple}  # local machine: prompt will be partly cyan
 fi
 
 
@@ -196,13 +197,13 @@ fi
 
 # Pick Prompt Colors
 
-tclr_time=$GREEN
-tclr_user=$BLUE
+tclr_time=$green # Old was bold
+tclr_user=$blue # Old was bold
 tclr_at=$brown
 tclr_host=$green
-tclr_brkt=$BROWN
-tclr_wdir=$HILIT
-tclr_sym=$RED
+tclr_brkt=$brown # Old was bold
+tclr_wdir=$HILIT # Old was bold
+tclr_sym=$red # Old was bold
 tclr_cmds=$NC
 tclr_numcmd=$red
 

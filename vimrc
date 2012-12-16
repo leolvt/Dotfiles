@@ -22,25 +22,11 @@ filetype plugin indent on
 set encoding=utf-8
 
 " Explicitly tell Vim that the terminal supports 256 colors
-set t_Co=256
+"set t_Co=256
+set t_Co=16
 
 " Allow hidden modified buffers
 set hidden
-
-" ==========================
-" Colors and Appearance
-" ==========================
-
-" Set theme
-colo molokai-glass
-
-set ruler
-set nu
-set nowrap
-set laststatus=2
-set cmdheight=2
-set cursorcolumn
-set cursorline
 
 " ==========================
 " General Behaviour
@@ -55,6 +41,24 @@ set mousehide
 set textwidth=80
 set listchars=tab:→_
 set nolist
+
+" ==========================
+" Colors and Appearance
+" ==========================
+
+" Set theme
+set background=dark
+"let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+colorscheme solarized
+"colo molokai-glass
+set ruler
+set nu
+set nowrap
+set laststatus=2
+set cmdheight=2
+set cursorcolumn
+set cursorline
 
 " ==========================
 " Tab and indent behaviour
@@ -82,6 +86,7 @@ function! SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
 " ==========================
 " Auto Commands
 " ==========================
@@ -240,6 +245,7 @@ nmap <F8> :TagbarToggle<CR>
 " ==========================
 " Syntastic config
 " ==========================
+let g:syntastic_mode_map = {'mode': 'passive'}
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_enable_balloons = 1

@@ -21,7 +21,7 @@ echo "Installing Git config files (gitconfig, gitignore-global)"
 ln -s $PWD/gitconfig ~/.gitconfig
 ln -s $PWD/gitignore-global ~/.gitignore-global
 echo "Installing custom login files"
-ln -s $PWD/login/ ~/.login
+ln -s $PWD/login ~/.login
 echo "Installing Vim config files (vimrc)"
 mkdir -p ~/.vim/colors
 ln -s $PWD/vimrc ~/.vimrc
