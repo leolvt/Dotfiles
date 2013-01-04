@@ -22,8 +22,8 @@ filetype plugin indent on
 set encoding=utf-8
 
 " Explicitly tell Vim that the terminal supports 256 colors
-"set t_Co=256
-set t_Co=16
+set t_Co=256
+"set t_Co=16
 
 " Allow hidden modified buffers
 set hidden
@@ -48,8 +48,8 @@ set nolist
 
 " Set theme
 set background=dark
-"let g:solarized_termcolors=256
-let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+"let g:solarized_termtrans=1
 colorscheme solarized
 "colo molokai-glass
 set ruler
