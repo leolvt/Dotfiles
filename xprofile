@@ -11,3 +11,5 @@
 #setxkbmap "us(intl)"
 
 xrdb -merge ~/.Xresources &
+
+date > ~/today

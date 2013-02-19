@@ -21,10 +21,6 @@ filetype plugin indent on
 " Set default encoding
 set encoding=utf-8
 
-" Explicitly tell Vim that the terminal supports 256 colors
-set t_Co=256
-"set t_Co=16
-
 " Allow hidden modified buffers
 set hidden
 
@@ -46,12 +42,19 @@ set nolist
 " Colors and Appearance
 " ==========================
 
-" Set theme
-set background=dark
-let g:solarized_termcolors=256
-"let g:solarized_termtrans=1
-colorscheme solarized
-"colo molokai-glass
+if has('gui_running')
+	set guifont=Ubuntu\ Mono\ 11
+	set background=dark
+	"let g:solarized_termcolors=256
+	"let g:solarized_termtrans=1
+	colorscheme solarized
+else
+	" Explicitly tell Vim that the terminal supports 256 colors
+	set t_Co=256
+	"set t_Co=16
+	colo molokai
+endif
+
 set ruler
 set nu
 set nowrap
@@ -80,12 +83,6 @@ set smartcase
 set incsearch
 set hlsearch
 
-function! SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
 
 " ==========================
 " Auto Commands
@@ -108,15 +105,15 @@ if has("autocmd")
 		autocmd!
 		"autocmd BufWinEnter * call s:SetLongLineMatching()
 		"autocmd BufWinEnter * let w:whitespace_match_number =
-					"\ matchadd('ExtraWhitespace', '\s\+$')
+		"\ matchadd('ExtraWhitespace', '\s\+$')
 		autocmd Syntax * call s:SetLongLineMatching()
 	augroup END
 
 	function! s:SetLongLineMatching()
 		" Define the pattern for almost long line
 		let l:MatchWarning = (&tw > 0) ?
-			\ "\\%<".(&tw+1)."v.\\%>".(&tw-3)."v"
-			\ : "\\%<81v.\\%>77v"
+					\ "\\%<".(&tw+1)."v.\\%>".(&tw-3)."v"
+					\ : "\\%<81v.\\%>77v"
 		" Add (or update) the match
 		if exists('w:almost_long_match_number')
 			call matchdelete(w:almost_long_match_number)
@@ -267,6 +264,19 @@ let g:Powerline_symbols = 'unicode'
 nmap <Leader>nt :NERDTreeToggle<CR>
 
 " ==========================
+" Display Syntax Class
+" ==========================
+
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+	"function! SynStack()
+	if !exists("*synstack")
+		return
+	endif
+	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" ==========================
 " Add the virtualenv's site-packages to vim path
 " ==========================
 
@@ -279,5 +289,5 @@ if 'VIRTUAL_ENV' in os.environ:
 	sys.path.insert(0, project_base_dir)
 	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
 	execfile(activate_this, dict(__file__=activate_this))
-EOF
+	EOF
 
