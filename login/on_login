@@ -1,5 +1,0 @@
-
-perl ~/.login/motd-gen.pl
-~/.login/motd.sh
-
-#cat /tmp/motd

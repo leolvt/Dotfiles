@@ -3,7 +3,11 @@
 
 use strict;
 
-my $CookieFile = "/tmp/motd";
+my $username = getpwuid($<);
+my $CookieFile = "/tmp/$username.motd";
+if ($#ARGV+1 >= 1) {
+   $CookieFile = $ARGV[0];
+}
 
 my @Now = localtime(time());
 my $Today = "$Now[3]-$Now[4]-".($Now[5]+1900);

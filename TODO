@@ -1,0 +1,5 @@
+* Add MotD to zsh
+* Check github.com/revans/bash-it
+* Make a "bootstrap" script
+* Move vim config to ".config/vim"
+* Config ZSH to ignore corrections on autojump

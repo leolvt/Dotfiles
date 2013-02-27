@@ -37,3 +37,5 @@ Bundle 'altercation/vim-colors-solarized'
 " Plugins from vim-scripts.org
 Bundle 'scratch.vim'
 Bundle 'TaskList.vim'
+Bundle 'aftersyntaxc.vim'
+"Bundle 'std_c.zip'

@@ -1,10 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
 HOSTNAME=`uname -n`
 KERNEL=`uname -r`
 CPU=`uname -p`
 ARCH=`uname -m`
-DATELINE=`~/.login/data_hora.pl 1`
+#DATELINE=`~/.login/data_hora.pl 1`
+DATELINE=`date`
 UP=$(uptime | sed -e 's/.*up\(.*\)/Up\1/')
 
 # The different colours as variables
@@ -26,6 +27,9 @@ white="\033[00;37m"
 WHITE="\033[01;37m"
 NC="\033[00m" # No Color
 
+# Generate the MOTD if needed
+perl ~/.config/shell-common/motd-gen.pl
+
 clear # to clear the screen when showing up
 echo -e "${RED}#=============================================================================#"
 echo -e ""
@@ -39,6 +43,6 @@ echo -e ""
 echo -e "${GREEN}#-----------------------------------------------------------------------------#${NC}"
 echo -e "\n${WHITE}Fortune of the day: \n${NC}"
 #fortune -cs
-sed 1d /tmp/motd
+sed 1d /tmp/$USER.motd
 echo -e ""
 echo -e "${RED}#=============================================================================#${NC}"

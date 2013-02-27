@@ -66,7 +66,7 @@ function ship()
 #------------------------------------------------------------------------------#
 
 # Prints the last minute Load Rate
-pLoad()
+function pLoad()
 {
 	uptime | sed -e "s_.*: \([^,]*\).*_\1_"
 }
@@ -75,7 +75,7 @@ pLoad()
 
 # Prints the uptime.
 
-pUpTime()
+function pUpTime()
 {
 	uptime | sed -e "s_.*\([0-9][0-9]*\):\([0-9]*\),.*_\1h\2m_"
 }
@@ -113,7 +113,7 @@ function setenv()
 
 # Function which adds an alias to the current shell and to
 # the ~/.login/aliases file.
-add-alias ()
+function add-alias ()
 {
    local name=$1 value="$2"
    echo alias $name=\'$value\' >> ~/.login/aliases
@@ -126,7 +126,7 @@ add-alias ()
 # "repeat" command.  Like:
 #
 #	repeat 10 echo foo
-repeat ()
+function repeat ()
 {
     local count="$1" i;
     shift;
@@ -139,7 +139,7 @@ repeat ()
 #------------------------------------------------------------------------------#
 
 # Subfunction needed by `repeat'.
-_seq ()
+function _seq ()
 {
     local lower upper output;
     lower=$1 upper=$2;
@@ -156,7 +156,7 @@ _seq ()
 #------------------------------------------------------------------------------#
 
 # Grep a process
-psgrep()
+function psgrep()
 {
 	ps -ef | grep $1 | grep -v grep
 }
@@ -164,7 +164,7 @@ psgrep()
 #------------------------------------------------------------------------------#
 
 # kill a process by name
-pskill()
+function pskill()
 {
 	local pid
 	pid=$(ps -e | grep $1 | awk '{ print $1 }')
@@ -177,7 +177,7 @@ pskill()
 #------------------------------------------------------------------------------#
 
 # Rotate 13 - Cypher
-rot13()
+function rot13()
 {
 	if [ $# = 0 ] ; then
 		tr "[a-m][n-z][A-M][N-Z]" "[n-z][a-m][N-Z][A-M]"
@@ -204,7 +204,7 @@ function chmog()
 #------------------------------------------------------------------------------#
 
 #myip - finds your current IP if your connected to the internet
-myip ()
+function myip ()
 {
 	lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | \
 	awk '{ print $4 }' | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g'
@@ -223,7 +223,7 @@ function setEnvIP() # Set IP adresses ENVVARS
 #------------------------------------------------------------------------------#
 
 #clock - A bash clock that can run in your terminal window.
-clock ()
+function clock ()
 {
 	while true;
 	do
@@ -238,7 +238,7 @@ clock ()
 #------------------------------------------------------------------------------#
 
 #netinfo - shows network information for your system
-netinfo ()
+function netinfo ()
 {
 	echo "--------------- Network Information ---------------"
 	/sbin/ifconfig | awk '/inet / {print "inet: ", $2}'
@@ -255,7 +255,7 @@ netinfo ()
 #------------------------------------------------------------------------------#
 
 #shot - takes a screenshot of your current window
-shot ()
+function shot ()
 {
 	import -w root -quality 75 "$HOME/shot-$(date +%s).png"
 }
@@ -264,7 +264,7 @@ shot ()
 # Cleaning functions
 #-------------------------------------------------------------
 
-texClean() {
+function texClean() {
     if ask "Really clean tex output files? "; then
         rm -f *.toc *.aux *.log *.cp *.fn *.tp *.vr *.pg *.ky *.lof *.lot  *.lsb
         rm -f *.lsg *.bbl *.blg;
@@ -276,7 +276,7 @@ texClean() {
 
 #------------------------------------------------------------------------------#
 
-clean() {
+function clean() {
     if ask "Really clean this directory? "; then
         rm -f \#* *~ .*~ *.bak .*.bak  *.tmp .*.tmp core a.out;
         echo "Cleaned.";

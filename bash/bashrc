@@ -97,17 +97,14 @@ fi
 # 3) Source local definitions, aliases and functions (if any)
 #-------------------------------------------------------------
 
-if [ -d ~/.login ]; then
+# Source local functions
+if [ -f ~/.bash_functions ]; then
+	. ~/.bash_functions
+fi
 
-	# Source local functions
-	if [ -f ~/.login/functions ]; then
-		. ~/.login/functions
-	fi
-
-	# Source Aliases
-	if [ -f ~/.login/aliases ]; then
-		. ~/.login/aliases
-	fi
+# Source Aliases
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
 fi
 
 #-------------------------------------------------------------
@@ -135,7 +132,7 @@ shopt -s checkwinsize
 
 # Enable color support of ls
 if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
-    if [ -f ~/.login/solarize.dircolors ]; then
+    if [ -f ~/.shell-common/solarize.dircolors ]; then
         eval "`dircolors ~/.login/solarize.dircolors`"
     else
         eval "`dircolors -b`"
@@ -274,7 +271,7 @@ fi
 # 8) Run Login Script (Greetings, motd, etc...)
 #-------------------------------------------------------------
 
-if [ -f ~/.login/on_login ]; then
-    . ~/.login/on_login
+if [ -f ~/.config/shell-common/motd.sh ]; then
+    . ~/.config/shell-common/motd.sh
 fi
 
