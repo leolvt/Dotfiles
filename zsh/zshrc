@@ -24,7 +24,7 @@ RUBY_PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin
 export PATH=$PATH:$LOCALPATH:$RUBY_PATH
 
 # Local LaTeX files under this dir:
-export TEXMFHOME=~/.texmf
+export TEXMFHOME=~/.local/share/texmf
 
 # Default editor is vim and multiple files are opened in multiple
 # tabs

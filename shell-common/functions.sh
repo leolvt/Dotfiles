@@ -13,19 +13,18 @@ function sink()
     P="\033[01;35m"
     W="\033[00;37m"
     NC="\033[00;0m"
-    PROMPT="$Y>> ${O}[${R}SINK${B}${O}] ${Y}>>${Y}"
-    echo -e "$PROMPT Getting branch name... $W"
+    local FUNC_PROMPT="$Y>> ${O}[${R}SINK${B}${O}] ${Y}>>${Y}"
+    echo -e "$FUNC_PROMPT Getting branch name... $W"
     CURRENT=`git branch | grep '\*' | awk '{print $2}'`
-    echo -e "$PROMPT Checking out 'master' branch... $W"
+    echo -e "$FUNC_PROMPT Checking out 'master' branch... $W"
     git checkout master
-    echo -e "$PROMPT Pulling upstream updates... $W"
+    echo -e "$FUNC_PROMPT Pulling upstream updates... $W"
     git pull origin master
-    echo -e "$PROMPT Going back to '$CURRENT' branch... $W"
+    echo -e "$FUNC_PROMPT Going back to '$CURRENT' branch... $W"
     git checkout ${CURRENT}
-    echo -e "$PROMPT Rebasing '$CURRENT' onto 'master'... $W"
+    echo -e "$FUNC_PROMPT Rebasing '$CURRENT' onto 'master'... $W"
     git rebase -i master
-    echo -e "$PROMPT DONE!$NC"
-    echo ""
+    echo -e "$FUNC_PROMPT DONE!$NC"
 }
 
 #-------------------------------------------------------------
@@ -34,27 +33,26 @@ function ship()
 {
     sink
 
-    B="\033[01;34m"
-    G="\033[01;32m"
-    R="\033[01;31m"
-    O="\033[00;33m"
-    P="\033[01;35m"
-    Y="\033[01;33m"
-    W="\033[00;37m"
-    NC="\033[00;0m"
-    PROMPT="$Y>> ${O}[${G}SHIP${B}${O}] ${Y}>>${Y}"
-    echo -e "$PROMPT Getting branch name... $W"
+    B="\033[1;34m"
+    G="\033[1;32m"
+    R="\033[1;31m"
+    O="\033[0;33m"
+    P="\033[1;35m"
+    Y="\033[1;33m"
+    W="\033[0;37m"
+    NC="\033[0m"
+    local FUNC_PROMPT="$Y>> ${O}[${G}SHIP${B}${O}] ${Y}>>${Y}"
+    echo -e "$FUNC_PROMPT Getting branch name... $W"
     CURRENT=`git branch | grep '\*' | awk '{print $2}'`
-    echo -e "$PROMPT Checking out 'master' branch... $W"
+    echo -e "$FUNC_PROMPT Checking out 'master' branch... $W"
     git checkout master
-    echo -e "$PROMPT Merging '$CURRENT' to 'master'... $W"
+    echo -e "$FUNC_PROMPT Merging '$CURRENT' to 'master'... $W"
     git merge ${CURRENT}
-    echo -e "$PROMPT Pushing new changes... $W"
+    echo -e "$FUNC_PROMPT Pushing new changes... $W"
     git push origin master
-    echo -e "$PROMPT Going back to '$CURRENT'... $W"
+    echo -e "$FUNC_PROMPT Going back to '$CURRENT'... $W"
     git checkout ${CURRENT}
-    echo -e "$PROMPT DONE!$NC"
-    echo ""
+    echo -e "$FUNC_PROMPT DONE!$NC"
 }
 
 #-------------------------------------------------------------

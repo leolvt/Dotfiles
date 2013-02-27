@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Set target dir
+DEST=${XDG_CONFIG_HOME:-$HOME/.config}
+
 # --------------------------
 # First, a simple check to see if we are inside the right folder
 if [ ! -f "bash/bashrc" ]; then
@@ -50,7 +53,7 @@ if [ -f ~/.zshrc ]; then
 
 	echo "Uninstalling zsh config files (and oh-my-zsh)"
 	rm -f ~/.zshrc
-	rm -fr ~/.config/oh-my-zsh
+	rm -fr $DEST/oh-my-zsh
 fi
 # --------------------------
 echo "Uninstalling Git config files (gitconfig, gitignore-global)"
@@ -59,12 +62,11 @@ rm -f ~/.gitignore-global
 
 # --------------------------
 echo "Uninstalling files common to both shells (MotD, aliases, etc.)"
-rm -f ~/.config/shell-common
+rm -f $DEST/shell-common
 
 # --------------------------
 echo "Uninstalling Vim config files (vimrc)"
 rm -f ~/.vimrc
-rm -f ~/.vim/colors/molokai-glass.vim
 rm -f ~/.vim/bundles.vim
 
 # --------------------------
@@ -76,7 +78,7 @@ rm -rf ~/.vim/bundle/vundle
 # --------------------------
 echo "Uninstalling font configuration file (.fonts.conf)"
 
-rm -f ${XDG_CONFIG_HOME:-$HOME/.config}/fontconfig/fonts.conf
+rm -f $DEST/fontconfig/fonts.conf
 
 # --------------------------
 echo "Uninstalling X config files (xprofile, Xresources)"
@@ -85,4 +87,4 @@ rm -f ~/.Xresources
 
 # --------------------------
 echo "Uninstalling local TEXMF dirs"
-various/make-tex-dirs.sh remove
+various/make-tex-dirs.sh remove $DEST

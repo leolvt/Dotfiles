@@ -1,5 +1,5 @@
 #!/bin/bash
-TEXMFDIR=${TEXMFHOME:-$HOME/.texmf}
+TEXMFDIR=${TEXMFHOME:-$HOME/.local/share/texmf}
 
 run() {
 	case "$1" in

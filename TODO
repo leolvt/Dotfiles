@@ -3,3 +3,4 @@
 * Make a "bootstrap" script
 * Move vim config to ".config/vim"
 * Config ZSH to ignore corrections on autojump
+* Add zsh completion for yaourt

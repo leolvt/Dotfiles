@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Set Install dir
+DEST=${XDG_CONFIG_HOME:-$HOME/.config}
+
 # --------------------------
 # First, a simple check to see if we are inside the right folder
 if [ ! -f "bash/bashrc" ]; then
@@ -10,7 +13,7 @@ fi
 
 # --------------------------
 # Now a simple check to se if we have a clean install
-if [ -d ~/.config/shell-common ]; then
+if [ -d $DEST/shell-common ]; then
 	echo "ERROR: An installation already exists. Aborting!"
 	echo "  If you are trying to reinstall the files, you should "
 	echo "  run ./uninstall.sh before."
@@ -52,7 +55,7 @@ fi
 
 # --------------------------
 echo "Installing files commom to both shells (MotD, alias, etc)"
-ln -s $PWD/shell-common ~/.config/shell-common
+ln -s $PWD/shell-common $DEST/shell-common
 
 # --------------------------
 # Installing bash files
@@ -69,8 +72,8 @@ if [ $INSTALL_BASH == 1 ]; then
 	ln -s $PWD/bash/bash_login ~/.bash_login
 	ln -s $PWD/bash/bash_logout ~/.bash_logout
 	ln -s $PWD/bash/bashrc ~/.bashrc
-	ln -s ~/.config/shell-common/aliases.sh ~/.bash_aliases
-	ln -s ~/.config/shell-common/functions.sh ~/.bash_functions
+	ln -s $DEST/shell-common/aliases.sh ~/.bash_aliases
+	ln -s $DEST/shell-common/functions.sh ~/.bash_functions
 fi
 
 # --------------------------
@@ -85,10 +88,11 @@ if [ $INSTALL_ZSH == 1 ]; then
 	fi
 
 	echo "Installing zsh config files (and oh-my-zsh)"
-    git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.config/oh-my-zsh
+    git clone git://github.com/robbyrussell/oh-my-zsh.git $DEST/oh-my-zsh
 	ln -s $PWD/zsh/zshrc ~/.zshrc
-	ln -s ~/.config/shell-common/aliases.sh	~/.config/oh-my-zsh/custom/aliases.zsh
-	ln -s ~/.config/shell-common/functions.sh ~/.config/oh-my-zsh/custom/functions.zsh
+	ln -s $DEST/shell-common/aliases.sh	$DEST/oh-my-zsh/custom/aliases.zsh
+	ln -s $DEST/shell-common/functions.sh $DEST/oh-my-zsh/custom/functions.zsh
+	ln -s $DEST/shell-common/motd.sh $DEST/oh-my-zsh/custom/motd.zsh
 fi
 
 # --------------------------
@@ -100,13 +104,12 @@ ln -s $PWD/git/gitignore-global ~/.gitignore-global
 echo "Installing Vim config files (vimrc)"
 mkdir -p ~/.vim/colors
 ln -s $PWD/vim/vimrc ~/.vimrc
-ln -s $PWD/vim/molokai-glass.vim ~/.vim/colors/molokai-glass.vim
 ln -s $PWD/vim/bundles.vim ~/.vim/bundles.vim
 
 # --------------------------
 echo "Installing font configuration file (.fonts.conf)"
-mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/fontconfig
-ln -s $PWD/various/fonts.conf ${XDG_CONFIG_HOME:-$HOME/.config}/fontconfig/fonts.conf
+mkdir -p $DEST/fontconfig
+ln -s $PWD/various/fonts.conf $DEST/fontconfig/fonts.conf
 # --------------------------
 
 echo "Installing X config files (xprofile, Xresources)"
