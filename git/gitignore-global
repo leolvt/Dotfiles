@@ -1,12 +1,39 @@
-# ignores for every git repository
-TAGS
-tags
-*.DS_Store
+### Ignore Stuff created on Mac OS X
+.DS_Store
 __MACOSX/*
+.AppleDouble
+.LSOverride
+Icon
 
-# swapfiles for various editors
-*.sw[n-p]
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+### Stuff created on Linux
+.*
+!.gitignore
 *~
 
-# ignore python compiled files
-*.pyc
+### Ignore tags created by etags and ctags
+TAGS
+!TAGS/
+tags
+!tags/
+
+### swapfiles for various editors
+.*.s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+### Virtualenv
+# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ss]cripts

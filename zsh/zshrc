@@ -77,16 +77,21 @@ ZSH_THEME="juanghurtado"
 
 # Uncomment following line if you want red dots to be displayed while waiting
 # for completion
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Which plugins would you like to load?
 # (plugins can be found in $ZSH/plugins/*)
 # Custom plugins may be added to $ZSH/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git autojump)
+plugins=(autojump archlinux dircycle extract git git-extras github pip
+python rsync screen systemd urltools vundle)
 
 # Run oh-my-zsh:
 source $ZSH/oh-my-zsh.sh
+
+# Set some ZSH options:
+setopt RM_STAR_SILENT
+setopt NO_AUTO_CD
 
 # ----------------------------------------------------
 # 3) Greeting and MOTD

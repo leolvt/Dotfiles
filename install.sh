@@ -90,6 +90,7 @@ if [ $INSTALL_ZSH == 1 ]; then
 	echo "Installing zsh config files (and oh-my-zsh)"
     git clone git://github.com/robbyrussell/oh-my-zsh.git $DEST/oh-my-zsh
 	ln -s $PWD/zsh/zshrc ~/.zshrc
+	ln -s $PWD/zsh/*.zsh $DEST/oh-my-zsh/custom/
 	ln -s $DEST/shell-common/aliases.sh	$DEST/oh-my-zsh/custom/aliases.zsh
 	ln -s $DEST/shell-common/functions.sh $DEST/oh-my-zsh/custom/functions.zsh
 	ln -s $DEST/shell-common/motd.sh $DEST/oh-my-zsh/custom/motd.zsh

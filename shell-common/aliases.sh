@@ -27,7 +27,7 @@ alias mkdir='mkdir -p' # Prevents accidentally clobbering files.
 # Useful Aliases
 #-------------------
 
-alias which='type -a'
+#alias which='type -a'
 alias path='echo -e ${PATH//:/\\n}'
 alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 #alias print='/usr/bin/lp -o nobanner -d $LPDEST'

@@ -377,7 +377,7 @@ function swap()  # Swap 2 filenames around, if they exist
 
 #------------------------------------------------------------------------------#
 
-function extract()      # Handy Extract Program.
+function extract_file()      # Handy Extract Program.
 {
      if [ -f $1 ] ; then
          case $1 in
