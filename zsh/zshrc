@@ -83,7 +83,7 @@ COMPLETION_WAITING_DOTS="true"
 # (plugins can be found in $ZSH/plugins/*)
 # Custom plugins may be added to $ZSH/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(autojump archlinux dircycle extract git git-extras github pip
+plugins=(autojump dircycle extract git git-extras github pip
 python rsync screen systemd urltools vundle)
 
 # Run oh-my-zsh:
