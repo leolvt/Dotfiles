@@ -17,3 +17,4 @@
 	ci = commit
 	em = "!${EDITOR:-vim -p} $(git ls-files --modified)"
 	st = status --branch 
+	tree = log --graph --decorate --pretty=oneline --abbrev-commit
