@@ -59,7 +59,7 @@ ln -s $PWD/shell-common $DEST/shell-common
 
 # --------------------------
 # Installing bash files
-if [ $INSTALL_BASH == 1 ]; then
+if [ "$INSTALL_BASH" -eq "1" ]; then
 
 	if [ -f ~/.bashrc ]; then
 		echo "ERROR: ~/.bashrc already exists. Aborting!"
@@ -78,7 +78,7 @@ fi
 
 # --------------------------
 # Installing zsh files
-if [ $INSTALL_ZSH == 1 ]; then
+if [ "$INSTALL_ZSH" -eq "1" ]; then
 
 	if [ -f ~/.zshrc ]; then
 		echo "ERROR: ~/.zshrc already exists. Aborting!"
