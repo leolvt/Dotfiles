@@ -40,6 +40,8 @@ export PERL_MB_OPT="--install_base /home/vilela/.local";
 export PERL_MM_OPT="INSTALL_BASE=/home/vilela/.local";
 export PERL5LIB="/home/vilela/.local/lib/perl5/x86_64-linux-thread-multi:/home/vilela/.local/lib/perl5";
 
+source /etc/profile.d/vte.sh
+chpwd_functions+=(__vte_osc7)
 
 # ----------------------------------------------------
 # 2) Set up Oh-My-ZSH
@@ -92,6 +94,9 @@ source $ZSH/oh-my-zsh.sh
 # Set some ZSH options:
 setopt RM_STAR_SILENT
 setopt NO_AUTO_CD
+
+bindkey "^[[7~" beginning-of-line
+bindkey "^[[8~" end-of-line
 
 # ----------------------------------------------------
 # 3) Greeting and MOTD
