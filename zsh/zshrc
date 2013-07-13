@@ -94,6 +94,7 @@ source $ZSH/oh-my-zsh.sh
 # Set some ZSH options:
 setopt RM_STAR_SILENT
 setopt NO_AUTO_CD
+setopt NULL_GLOB
 
 bindkey "^[[7~" beginning-of-line
 bindkey "^[[8~" end-of-line

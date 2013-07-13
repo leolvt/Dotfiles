@@ -264,8 +264,8 @@ function shot ()
 
 function texClean() {
     if ask "Really clean tex output files? "; then
-        rm -f *.toc *.aux *.log *.cp *.fn *.tp *.vr *.pg *.ky *.lof *.lot  *.lsb
-        rm -f *.lsg *.bbl *.blg;
+        command rm -f *.toc *.aux *.log *.cp *.fn *.tp *.vr *.pg *.ky *.lof *.lot *.lsb
+        command rm -f *.lsg *.bbl *.blg;
         echo "Cleaned.";
     else
         echo "Not cleaned.";
