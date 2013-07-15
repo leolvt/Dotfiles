@@ -36,9 +36,9 @@ lastend=`last $USER | grep -v "still" | egrep ":0\s+:0" | head -n 1 | awk '{prin
 lastdur=`last $USER | grep -v "still" | egrep ":0\s+:0" | head -n 1 | awk '{print $10}'`
 lastdur=${lastdur:1:5}
 
-echo "Logged in since: $currdate $currtime"
-echo ""
-echo "    Last login: $lastdate << $laststart >> => << $lastend >> $lastdur"
+#echo "Logged in since: $currdate $currtime"
+#echo ""
+#echo "    Last login: $lastdate << $laststart >> => << $lastend >> $lastdur"
 # Generate the MOTD if needed
 perl ~/.config/shell-common/motd-gen.pl
 
