@@ -66,6 +66,9 @@ export PERL_MB_OPT="--install_base /home/vilela/.local";
 export PERL_MM_OPT="INSTALL_BASE=/home/vilela/.local";
 export PERL5LIB="/home/vilela/.local/lib/perl5/x86_64-linux-thread-multi:/home/vilela/.local/lib/perl5";
 
+# Set the TERM var for tmux with 256 colors
+[ -n "$TMUX" ] && export TERM=screen-256color
+
 #-------------------------------------------------------------
 # 2) Source global definitions (if any)
 #-------------------------------------------------------------

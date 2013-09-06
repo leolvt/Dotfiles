@@ -43,6 +43,9 @@ export PERL5LIB="/home/vilela/.local/lib/perl5/x86_64-linux-thread-multi:/home/v
 source /etc/profile.d/vte.sh
 chpwd_functions+=(__vte_osc7)
 
+# Set the correct TERM for tmux with 256 colors
+[ -n "$TMUX" ] && export TERM=screen-256color
+
 # ----------------------------------------------------
 # 2) Set up Oh-My-ZSH
 # ----------------------------------------------------

@@ -32,6 +32,7 @@ Bundle 'Nemo157/glsl.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'vim-perl/vim-perl'
 "Bundle 'mileszs/ack.vim'
 
 " Plugins from vim-scripts.org
