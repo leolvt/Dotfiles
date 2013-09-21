@@ -85,3 +85,14 @@ let g:syntastic_always_populate_loc_list = 1
 " ==========================
 " }}}
 
+" UltiSnips {{{
+let g:UltiSnips = {}
+let g:UltiSnips.ExpandTrigger = "<c-j>"
+"let g:UltiSnips.JumpForwardTrigger = "<c-j>"
+"let g:UltiSnips.UltiSnips_ft_filter = {
+            "\ 'default' : {'filetypes': ['all'] },
+            "\ 'all' : {'filetypes': ['all'] },
+            "\ 'cpp' : {'filetypes': ['cpp'], 'dir-regex': '[._]vim/UltiSnips$' },
+            "\ }
+" }}}
+
