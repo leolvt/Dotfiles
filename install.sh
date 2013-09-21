@@ -103,14 +103,19 @@ ln -s $PWD/git/gitignore-global ~/.gitignore-global
 
 # --------------------------
 echo "Installing Vim config files (vimrc)"
-mkdir -p ~/.vim/colors
+mkdir -p ~/.vim/{colors,snippets,spell,tmp{backup,undo,swap}}
 ln -s $PWD/vim/vimrc ~/.vimrc
-ln -s $PWD/vim/bundles.vim ~/.vim/bundles.vim
+ln -s $PWD/vim/*.vim ~/.vim/
+
+# --------------------------
+echo "Installing EditorConfig file (.editorconfig)"
+ln -s $PWD/various/editorconfig $DEST/.editorconfig
 
 # --------------------------
 echo "Installing font configuration file (.fonts.conf)"
 mkdir -p $DEST/fontconfig
 ln -s $PWD/various/fonts.conf $DEST/fontconfig/fonts.conf
+
 # --------------------------
 
 echo "Installing X config files (xprofile, Xresources)"

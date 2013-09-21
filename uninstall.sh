@@ -76,8 +76,11 @@ echo "  not working, since Vundle will be uninstalled..."
 rm -rf ~/.vim/bundle/vundle
 
 # --------------------------
-echo "Uninstalling font configuration file (.fonts.conf)"
+echo "Uninstalling EditorConfig file (.editorconfig)"
+rm -f $DEST/.editorconfig
 
+# --------------------------
+echo "Uninstalling font configuration file (.fonts.conf)"
 rm -f $DEST/fontconfig/fonts.conf
 
 # --------------------------
