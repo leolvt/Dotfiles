@@ -13,7 +13,7 @@ let g:voogle_map = '<Leader>gog'
 " }}}
 
 " Google I'm Feeling Lucky URL Grabber {{{
-let g:LuckyOutputFormat='markdown'
+"let g:LuckyOutputFormat='markdown'
 " }}}
 
 " Multiple-Cursors {{{
@@ -27,24 +27,26 @@ let g:multi_cursor_quit_key='<Esc>'
 " }}}
 
 " MiniBufExplorer {{{
-let g:miniBufExplUseSingleClick = 1
-let g:miniBufExplCloseOnSelect = 0
-let g:miniBufExplBuffersNeeded=2
-let g:miniBufExplHideWhenDiff=1
+"let g:miniBufExplUseSingleClick = 1
+"let g:miniBufExplCloseOnSelect = 0
+"let g:miniBufExplBuffersNeeded=2
+"let g:miniBufExplHideWhenDiff=1
 " }}}
 
 " SnipMate {{{
-let g:snips_author = 'Leonardo Vilela Teixeira'
+"let g:snips_author = 'Leonardo Vilela Teixeira'
 " }}}
 
 " Syntastic {{{
-let g:syntastic_mode_map = {'mode': 'active'}
+let g:syntastic_mode_map = {'mode': 'passive'}
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_enable_balloons = 1
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_always_populate_loc_list = 1
+
+let g:syntastic_cpp_ycm_args = ''
 " }}}
 
 " Old unused stuff {{{
@@ -88,11 +90,15 @@ let g:syntastic_always_populate_loc_list = 1
 " UltiSnips {{{
 let g:UltiSnips = {}
 let g:UltiSnips.ExpandTrigger = "<c-j>"
-"let g:UltiSnips.JumpForwardTrigger = "<c-j>"
-"let g:UltiSnips.UltiSnips_ft_filter = {
-            "\ 'default' : {'filetypes': ['all'] },
-            "\ 'all' : {'filetypes': ['all'] },
-            "\ 'cpp' : {'filetypes': ['cpp'], 'dir-regex': '[._]vim/UltiSnips$' },
-            "\ }
+let g:UltiSnips.JumpForwardTrigger = "<c-j>"
+let g:UltiSnips.UltiSnips_ft_filter = {
+			\ 'default' : {'filetypes': ['all'] },
+			\ 'all' : {'filetypes': ['all'] },
+			\ 'cpp' : {'filetypes': ['cpp'], 'dir-regex': '[._]vim/UltiSnips$' },
+			\ }
 " }}}
 
+" You Complete Me {{{
+let g:ycm_register_as_syntastic_checker = 0
+let g:ycm_allow_changing_updatetime = 0
+" }}}

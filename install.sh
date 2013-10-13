@@ -103,7 +103,7 @@ ln -s $PWD/git/gitignore-global ~/.gitignore-global
 
 # --------------------------
 echo "Installing Vim config files (vimrc)"
-mkdir -p ~/.vim/{colors,snippets,spell,tmp{backup,undo,swap}}
+mkdir -p ~/.vim/{colors,snippets,spell,tmp/{backup,undo,swap}}
 ln -s $PWD/vim/vimrc ~/.vimrc
 ln -s $PWD/vim/*.vim ~/.vim/
 

@@ -72,15 +72,15 @@ nnoremap <leader>h <C-w>s<C-w>j
 " Plugin Mappings {{{
 
 " MiniBufferExplorer {{{2
-map <Leader>mbe :MBEOpen<cr>
-map <Leader>mbc :MBEClose<cr>
-map <Leader>mbt :MBEToggle<cr>
-noremap <C-TAB>   :MBEbf<CR>
-noremap <C-S-TAB> :MBEbb<CR>
+"map <Leader>mbe :MBEOpen<cr>
+"map <Leader>mbc :MBEClose<cr>
+"map <Leader>mbt :MBEToggle<cr>
+"noremap <C-TAB>   :MBEbf<CR>
+"noremap <C-S-TAB> :MBEbb<CR>
 
 " }}}
 
-" Tagbar config {{{2
+" Tagbar {{{2
 nmap <F8> :TagbarToggle<CR>
 " }}}
 
@@ -89,7 +89,11 @@ nmap <Leader>nt :NERDTreeToggle<CR>
 " }}}
 
 " Gundo {{{2
-nmap <F5> :GundoToggle<CR>
+nmap <F6> :GundoToggle<CR>
+" }}}
+
+" Syntastic {{{2
+nmap <F5> :SyntasticCheck<CR>
 " }}}
 
 " }}}

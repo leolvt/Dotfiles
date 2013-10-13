@@ -26,8 +26,6 @@ set foldmethod=syntax
 set mouse=a
 set mousehide
 set textwidth=80
-set listchars=tab:→_,eol:¬,extends:❯,precedes:❮,trail:␣
-set nolist
 set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc,tmp,*.scssc
 
 set spelllang=en,pt
@@ -80,6 +78,9 @@ set cino=N-s,(s,us,U1
 set completeopt=menuone,preview
 set formatoptions=crqln1
 set showmatch
+set listchars=tab:\|\ ,extends:❯,precedes:❮,trail:␣
+"set listchars=tab:→_,eol:¬,extends:❯,precedes:❮,trail:␣
+set nolist
 
 " }}}
 

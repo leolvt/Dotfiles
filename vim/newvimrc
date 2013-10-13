@@ -42,6 +42,12 @@ if filereadable(expand("~/.vim/autocmd.vim"))
 endif
 " }}}
 
+" Functions {{{1
+if filereadable(expand("~/.vim/functions.vim"))
+    source ~/.vim/functions.vim
+endif
+" }}}
+
 " Things to do after everything is set {{{1
 if filereadable(expand("~/.vim/after.vim"))
     source ~/.vim/after.vim

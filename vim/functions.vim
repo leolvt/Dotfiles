@@ -2,8 +2,8 @@
 " Display Syntax Class
 " ==========================
 
-nmap <C-S-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
+nmap <C-S-S> :call SynStack()<CR>
+function! SynStack()
     "function! SynStack()
     if !exists("*synstack")
         return
