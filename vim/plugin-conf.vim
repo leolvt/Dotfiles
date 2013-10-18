@@ -91,14 +91,22 @@ let g:syntastic_cpp_ycm_args = ''
 let g:UltiSnips = {}
 let g:UltiSnips.ExpandTrigger = "<c-j>"
 let g:UltiSnips.JumpForwardTrigger = "<c-j>"
-let g:UltiSnips.UltiSnips_ft_filter = {
-			\ 'default' : {'filetypes': ['all'] },
-			\ 'all' : {'filetypes': ['all'] },
-			\ 'cpp' : {'filetypes': ['cpp'], 'dir-regex': '[._]vim/UltiSnips$' },
-			\ }
+"let g:UltiSnips.UltiSnips_ft_filter = {
+			"\ 'default' : {'filetypes': ['all'] },
+			"\ 'all' : {'filetypes': ['all'] },
+			"\ 'cpp' : {'filetypes': ['cpp'], 'dir-regex': '[._]vim/UltiSnips$' },
+			"\ }
 " }}}
 
 " You Complete Me {{{
 let g:ycm_register_as_syntastic_checker = 0
 let g:ycm_allow_changing_updatetime = 0
+" }}}
+
+" std_c {{{
+let c_space_errors = 1
+let c_comment_strings = 1
+let c_comment_numbers = 1
+let c_comment_types = 1
+let c_comment_date_time = 1
 " }}}
