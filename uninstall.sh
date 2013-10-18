@@ -67,7 +67,14 @@ rm -f $DEST/shell-common
 # --------------------------
 echo "Uninstalling Vim config files (vimrc)"
 rm -f ~/.vimrc
+rm -f ~/.vim/after.vim
+rm -f ~/.vim/autocmd.vim
+rm -f ~/.vim/before.vim
 rm -f ~/.vim/bundles.vim
+rm -f ~/.vim/config.vim
+rm -f ~/.vim/functions.vim
+rm -f ~/.vim/mappings.vim
+rm -f ~/.vim/plugin-conf.vim
 
 # --------------------------
 echo "Uninstalling Vim Vundle script, to manage vim plugins."
@@ -77,7 +84,7 @@ rm -rf ~/.vim/bundle/vundle
 
 # --------------------------
 echo "Uninstalling EditorConfig file (.editorconfig)"
-rm -f $DEST/.editorconfig
+rm -f $HOME/.editorconfig
 
 # --------------------------
 echo "Uninstalling font configuration file (.fonts.conf)"

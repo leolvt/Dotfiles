@@ -109,7 +109,7 @@ ln -s $PWD/vim/*.vim ~/.vim/
 
 # --------------------------
 echo "Installing EditorConfig file (.editorconfig)"
-ln -s $PWD/various/editorconfig $DEST/.editorconfig
+ln -s $PWD/various/editorconfig $HOME/.editorconfig
 
 # --------------------------
 echo "Installing font configuration file (.fonts.conf)"
