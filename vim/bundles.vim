@@ -19,26 +19,16 @@ Bundle 'tomasr/molokai'
 " }}}
 
 " Vim Editor and interface features {{{1
-Bundle 'Yggdroot/indentLine'
 Bundle 'bling/vim-airline'
 Bundle 'editorconfig/editorconfig-vim'
-Bundle 'g3orge/vim-voogle'
 Bundle 'kien/ctrlp.vim'
-Bundle 'matthias-guenther/hammer.vim'
-Bundle 'mhinz/vim-signify'
-Bundle 'mhinz/vim-startify'
 Bundle 'milkypostman/vim-togglelist'
-"Bundle 'mutewinter/GIFL'
 Bundle 'mutewinter/swap-parameters'
 Bundle 'rking/ag.vim'
-Bundle 'terryma/vim-multiple-cursors'
 Bundle 'troydm/easybuffer.vim'
 Bundle 'Valloric/YouCompleteMe'
-"Bundle 'techlivezheng/vim-plugin-minibufexpl'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'majutsushi/tagbar'
-"Bundle 'msanders/snipmate.vim'
-"Bundle 'garbas/vim-snipmate'
 Bundle 'MarcWeber/ultisnips'
 Bundle 'honza/vim-snippets'
 Bundle 'scrooloose/nerdcommenter'
@@ -48,11 +38,21 @@ Bundle 'sjl/gundo.vim'
 Bundle 'mbbill/undotree'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
+"Bundle 'Yggdroot/indentLine'
+"Bundle 'g3orge/vim-voogle'
+"Bundle 'matthias-guenther/hammer.vim'
+"Bundle 'mhinz/vim-signify'
+"Bundle 'mhinz/vim-startify'
+"Bundle 'mutewinter/GIFL'
+"Bundle 'terryma/vim-multiple-cursors'
+"Bundle 'techlivezheng/vim-plugin-minibufexpl'
+"Bundle 'msanders/snipmate.vim'
+"Bundle 'garbas/vim-snipmate'
 
-Bundle 'HelpClose'
 Bundle 'IndexedSearch'
 Bundle 'TaskList.vim'
 Bundle 'ZoomWin'
+"Bundle 'HelpClose'
 "Bundle 'scratch.vim'
 " }}}
 
@@ -67,15 +67,15 @@ Bundle 'vim-perl/vim-perl'
 " }}}
 
 " HTML/CSS {{{2
-Bundle 'mattn/emmet-vim'
+"Bundle 'mattn/emmet-vim'
 " }}}
 
 " GLSL {{{2
-Bundle 'Nemo157/glsl.vim'
+"Bundle 'Nemo157/glsl.vim'
 " }}}
 
 " Markdown {{{
-Bundle 'tpope/vim-markdown'
+"Bundle 'tpope/vim-markdown'
 " }}}
 
 " C/C++ {{{
@@ -92,13 +92,10 @@ Bundle 'tpope/vim-git'
 " }}}
 
 " Integration and tools {{{1
-Bundle 'benmills/vimux'
-Bundle 'mattn/webapi-vim'
 Bundle 'tpope/vim-eunuch'
+"Bundle 'benmills/vimux'
+"Bundle 'mattn/webapi-vim'
 " }}}
-
-""Bundle 'alfredodeza/pytest.vim'
-""Bundle 'fs111/pydoc.vim'
 
 " Activate filetype and indent
 filetype plugin indent on

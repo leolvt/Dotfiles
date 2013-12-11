@@ -21,8 +21,10 @@ syntax on
 set wildmenu           " Wild menu (shows tab completion for commands)
 set cf                 " Enable error files & error jumping
 set clipboard+=unnamed " Yanks go on clipboard
+
 "set foldlevelstart=99  " Remove folds
 set foldmethod=syntax
+
 set mouse=a
 set mousehide
 set textwidth=80
@@ -81,6 +83,7 @@ set showmatch
 set listchars=tab:\|\ ,extends:❯,precedes:❮,trail:␣
 "set listchars=tab:→_,eol:¬,extends:❯,precedes:❮,trail:␣
 set nolist
+set conceallevel=0
 
 " }}}
 
@@ -95,6 +98,53 @@ set backupdir=~/.vim/tmp/backup// " backups
 set directory=~/.vim/tmp/swap//   " swap files
 set backup
 set noswapfile
+"
+" Prevent various Vim features from keeping the contents of pass(1) password
+" files (or any other purely temporary files) in plaintext on the system.
+"
+" Either append this to the end of your .vimrc, or install it as a plugin with
+" a plugin manager like Tim Pope's Pathogen.
+"
+" Author: Tom Ryder <tom@sanctum.geek.nz>
+"
+
+" Don't backup files in temp directories or shm
+if exists('&backupskip')
+    set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/media/truecrypt*
+endif
+
+" Don't keep swap files in temp directories or shm
+if has('autocmd')
+    augroup swapskip
+        autocmd!
+        silent! autocmd BufNewFile,BufReadPre
+            \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/media/truecrypt*
+            \ setlocal noswapfile
+    augroup END
+endif
+
+" Don't keep undo files in temp directories or shm
+if has('persistent_undo') && has('autocmd')
+    augroup undoskip
+        autocmd!
+        silent! autocmd BufWritePre
+            \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/media/truecrypt*
+            \ setlocal noundofile
+    augroup END
+endif
+
+" Don't keep viminfo for files in temp directories or shm
+if has('viminfo')
+    if has('autocmd')
+        augroup viminfoskip
+            autocmd!
+            silent! autocmd BufNewFile,BufReadPre
+                \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/media/truecrypt*
+                \ setlocal viminfo=
+        augroup END
+    endif
+endif
+
 " }}}
 
 " Add the virtualenv's site-packages to vim path {{{

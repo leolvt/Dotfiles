@@ -6,36 +6,33 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 " }}}
 
-" Vim-Voogle {{{
-" Change mapping (conflict with swap parametes)
-let g:voogle_map = '<Leader>gog'
-
+" UltiSnips {{{
+let g:UltiSnips = {}
+let g:UltiSnips.ExpandTrigger='<C-J>'
+let g:UltiSnips.ListSnippets='C-TAB>'
+let g:UltiSnips.JumpForwardTrigger='<C-J>'
+let g:UltiSnips.JumpBackwardTrigger='<C-K>'
+"let g:UltiSnips.UltiSnips_ft_filter = {
+	"\ 'default' : {'filetypes': ['all'] },
+	"\ 'all' : {'filetypes': ['all'] },
+	"\ 'cpp' : {'filetypes': ['cpp'], 'dir-regex': '[._]vim/UltiSnips$' },
+	"\ }
 " }}}
 
-" Google I'm Feeling Lucky URL Grabber {{{
-"let g:LuckyOutputFormat='markdown'
+" You Complete Me {{{
+let g:ycm_register_as_syntastic_checker = 0
+let g:ycm_allow_changing_updatetime = 0
 " }}}
 
-" Multiple-Cursors {{{
-let g:multi_cursor_use_default_mapping=0
-
-" Default mapping
-let g:multi_cursor_next_key='<C-n>'
-let g:multi_cursor_prev_key='<C-N>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
+" std_c {{{
+let c_space_errors = 1
+let c_comment_strings = 1
+let c_comment_numbers = 1
+let c_comment_types = 1
+let c_comment_date_time = 1
 " }}}
 
-" MiniBufExplorer {{{
-"let g:miniBufExplUseSingleClick = 1
-"let g:miniBufExplCloseOnSelect = 0
-"let g:miniBufExplBuffersNeeded=2
-"let g:miniBufExplHideWhenDiff=1
-" }}}
 
-" SnipMate {{{
-"let g:snips_author = 'Leonardo Vilela Teixeira'
-" }}}
 
 " Syntastic {{{
 let g:syntastic_mode_map = {'mode': 'passive'}
@@ -48,6 +45,8 @@ let g:syntastic_always_populate_loc_list = 1
 
 let g:syntastic_cpp_ycm_args = ''
 " }}}
+
+" ==========================
 
 " Old unused stuff {{{
 " Clang-Complete config
@@ -72,10 +71,6 @@ let g:syntastic_cpp_ycm_args = ''
 "augroup END
 
 " ==========================
-
-" ==========================
-
-" ==========================
 " Powerline config
 " ==========================
 "set laststatus=2
@@ -84,29 +79,15 @@ let g:syntastic_cpp_ycm_args = ''
 "let g:Powerline_theme = 'skwp'
 "let g:Powerline_colorscheme = 'skwp'
 
-" ==========================
+" Multiple-Cursors {{{
+"let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+"let g:multi_cursor_next_key='<C-n>'
+"let g:multi_cursor_prev_key='<C-N>'
+"let g:multi_cursor_skip_key='<C-x>'
+"let g:multi_cursor_quit_key='<Esc>'
 " }}}
 
-" UltiSnips {{{
-let g:UltiSnips = {}
-let g:UltiSnips.ExpandTrigger = "<c-j>"
-let g:UltiSnips.JumpForwardTrigger = "<c-j>"
-"let g:UltiSnips.UltiSnips_ft_filter = {
-			"\ 'default' : {'filetypes': ['all'] },
-			"\ 'all' : {'filetypes': ['all'] },
-			"\ 'cpp' : {'filetypes': ['cpp'], 'dir-regex': '[._]vim/UltiSnips$' },
-			"\ }
 " }}}
 
-" You Complete Me {{{
-let g:ycm_register_as_syntastic_checker = 0
-let g:ycm_allow_changing_updatetime = 0
-" }}}
-
-" std_c {{{
-let c_space_errors = 1
-let c_comment_strings = 1
-let c_comment_numbers = 1
-let c_comment_types = 1
-let c_comment_date_time = 1
-" }}}
