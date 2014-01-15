@@ -59,7 +59,7 @@ Bundle 'ZoomWin'
 " Language specific bundles {{{1
 
 " Python {{{ 2
-Bundle 'klen/python-mode'
+"Bundle 'klen/python-mode'
 " }}}
 
 " Perl {{{
@@ -67,7 +67,7 @@ Bundle 'vim-perl/vim-perl'
 " }}}
 
 " HTML/CSS {{{2
-"Bundle 'mattn/emmet-vim'
+Bundle 'mattn/emmet-vim'
 " }}}
 
 " GLSL {{{2
@@ -75,7 +75,7 @@ Bundle 'vim-perl/vim-perl'
 " }}}
 
 " Markdown {{{
-"Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-markdown'
 " }}}
 
 " C/C++ {{{

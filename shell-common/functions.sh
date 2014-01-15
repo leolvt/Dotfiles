@@ -14,12 +14,17 @@ function sink()
     W="\033[00;37m"
     NC="\033[00;0m"
     local FUNC_PROMPT="$Y>> ${O}[${R}SINK${B}${O}] ${Y}>>${Y}"
+	#local REMOTE_REPO=$(git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q master) | sed -e "/^\s*$/d" | sed -e "s/\/.*//")
+	#local REMOTE_REPO=$(git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q master) | sed -e "/^\s*$/d" | sed -e "s/\(.*\)\/\(.*\)/\1  \2:\2/")
+	#local REMOTE_REPO=$(git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q master) | sed -e "/^\s*$/d" | sed -e "s/\(.*\)\/\(.*\)/\1  \2:\2/")
+	#local REMOTE_REPO=$(git for-each-ref --format='%(upstream:short)' refs/heads/master | sed -e "/^\s*$/d" | sed -e "s/\(.*\)\/\(.*\)/\1  \2:\2/")
+	local REMOTE_REPO=$(git for-each-ref --format='%(upstream:short)' refs/heads/master | sed -e "/^\s*$/d" | sed -e "s/\/.*//")
     echo -e "$FUNC_PROMPT Getting branch name... $W"
     CURRENT=`git branch | grep '\*' | awk '{print $2}'`
     echo -e "$FUNC_PROMPT Checking out 'master' branch... $W"
     git checkout master
     echo -e "$FUNC_PROMPT Pulling upstream updates... $W"
-    git pull origin master
+    git pull ${REMOTE_REPO} master
     echo -e "$FUNC_PROMPT Going back to '$CURRENT' branch... $W"
     git checkout ${CURRENT}
     echo -e "$FUNC_PROMPT Rebasing '$CURRENT' onto 'master'... $W"
@@ -42,6 +47,7 @@ function ship()
     W="\033[0;37m"
     NC="\033[0m"
     local FUNC_PROMPT="$Y>> ${O}[${G}SHIP${B}${O}] ${Y}>>${Y}"
+	local REMOTE_REPO=$(git for-each-ref --format='%(upstream:short)' refs/heads/master | sed -e "/^\s*$/d" | sed -e "s/\/.*//")
     echo -e "$FUNC_PROMPT Getting branch name... $W"
     CURRENT=`git branch | grep '\*' | awk '{print $2}'`
     echo -e "$FUNC_PROMPT Checking out 'master' branch... $W"
@@ -49,7 +55,7 @@ function ship()
     echo -e "$FUNC_PROMPT Merging '$CURRENT' to 'master'... $W"
     git merge ${CURRENT}
     echo -e "$FUNC_PROMPT Pushing new changes... $W"
-    git push origin master
+    git push ${REMOTE_REPO} master
     echo -e "$FUNC_PROMPT Going back to '$CURRENT'... $W"
     git checkout ${CURRENT}
     echo -e "$FUNC_PROMPT DONE!$NC"
