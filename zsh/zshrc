@@ -41,7 +41,8 @@ export PERL_MM_OPT="INSTALL_BASE=/home/vilela/.local";
 export PERL5LIB="/home/vilela/.local/lib/perl5/x86_64-linux-thread-multi:/home/vilela/.local/lib/perl5";
 
 source /etc/profile.d/vte.sh
-chpwd_functions+=(__vte_osc7)
+# TODO: run the following line if inside gnome-terminal 
+#chpwd_functions+=(__vte_osc7)
 
 # Set the correct TERM for tmux with 256 colors
 [ -n "$TMUX" ] && export TERM=screen-256color

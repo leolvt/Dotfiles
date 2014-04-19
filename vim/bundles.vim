@@ -60,6 +60,8 @@ Bundle 'ZoomWin'
 
 " Python {{{ 2
 "Bundle 'klen/python-mode'
+Bundle 'jmcantrell/vim-virtualenv'
+Bundle 'python.vim--Vasiliev'
 " }}}
 
 " Perl {{{

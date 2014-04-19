@@ -3,6 +3,7 @@
 	editor = vim
 	autocrlf = input
 	safecrlf = true
+	autocrlf = false
 
 [user]
 	name = Leonardo Vilela Teixeira
