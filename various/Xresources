@@ -1,34 +1,159 @@
-
 Xcursor.theme: Adwaita
 Xft.dpi:        96
 Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
+!Xft*dpi:                96
+!Xft*antialias:          true
+!Xft*hinting:            full
 
-URxvt*font:             xft:Ubuntu Mono derivative Powerline:size=12
-!URxvt*termName:         rxvt
-URxvt*scrollBar:         true
-urxvt*scrollstyle:		 plain
-!urxvt*scrollWithBuffer:  true
-urxvt*scrollTtyKeypress: true
-!Urxvt*secondaryScreen: true
-!Urxvt*secondaryScroll: false
-!URxvt*.perl-lib:         /usr/lib/URxvt/perl/
-!URxvt*.perl-ext-common:  default,matcher
-!URxvt*.urlLauncher:      /usr/bin/chromium
-!URxvt*.matcher.button:   1
-!URxvt*.fading:           50
-!URxvt*.fadeColor:        #000000
+!*background: #1c1b1a
+!*foreground: #f8f6f2
 
-urxvt*transparent: true
-urxvt*shading: 15
+! Hybrid Terminal Colours. Uses the palette from Tomorrow-Night:
+! https://github.com/chriskempson/tomorrow-theme/blob/master/vim/colors/Tomorrow-Night.vim
+! vim: ft=xdefaults
+
+!*background: #1D1F21
+!*foreground: #C5C8C6
+!! black
+!*color0: #282A2E
+!*color8: #373B41
+!! red
+!*color1: #A54242
+!*color9: #CC6666
+!! green
+!*color2: #8C9440
+!*color10: #B5BD68
+!! yellow
+!*color3: #DE935F
+!*color11: #F0C674
+!! blue
+!*color4: #5F819D
+!*color12: #81A2BE
+!! magenta
+!*color5: #85678F
+!*color13: #B294BB
+!! cyan
+!*color6: #5E8D87
+!*color14: #8ABEB7
+!! white
+!*color7: #707880
+!*color15: #C5C8C6
 
 
-! Tango theme
-urxvt*foreground: white
-urxvt*background: black
+!! swayr color scheme
+!*background: #1c1709
+!*foreground: #c2b9a1
+!*color0:     #1c1709
+!*color8:     #4f4939
+!*color1:     #8e4317
+!*color9:     #f07935
+!*color2:     #787200
+!*color10:    #d9d138
+!*color3:     #945c00
+!*color11:    #ffab26
+!*color4:     #315094
+!*color12:    #8aa9ed
+!*color5:     #5c2e40
+!*color13:    #ff8cb8
+!*color14:    #43bfe0
+!*color7:     #c2b9a1
+!*color15:    #f2e8c9
 
+!! Parker Brothers colors
+!*background: #1c1b1a
+!*foreground: #f8f6f2
+!!black
+!*color0:    #322a2c
+!*color8:    #46423b
+!!red
+!*color1:    #79220E
+!*color9:    #AA261F
+!!green
+!*color2:    #344B1B
+!*color10:   #76550F
+!!yellow
+!!*color3:    #c77920
+!*color3:    #B45B00
+!*color11:   #B57F02
+!!blue
+!*color4:    #434045
+!*color12:   #908862
+!!magenta
+!*color5:    #5C1E25
+!*color13:   #624A35
+!!cyan
+!*color6:    #394745
+!*color14:   #393E38
+!!white
+!*color7:    #AE8842
+!*color15:   #A59058
+
+
+!! Orangy
+!*background: #1c1b1a
+!*foreground: #f8f6f2
+!!black
+!*color0:  #251f1f
+!*color8:  #5e5e5e
+!!red
+!*color1:  #eb4509
+!*color9:  #eb4509
+!!green
+!*color2:  #94e76b
+!*color10: #95e76b
+!!yellow
+!*color3:  #ffac18
+!*color11: #ffac18
+!!blue
+!*color4:  #46aede
+!*color12: #46aede
+!!magenta
+!*color5:  #e32c57
+!*color13: #e32c57
+!!cyan
+!*color6:  #d6dbac
+!*color14: #d6dbac
+!!white
+!*color7:  #efefef
+!*color15: #efefef
+
+!! X11 colors pieced together by Dmitry Medvinsky.
+!! Based on Vim colorscheme "badwolf" pieced together by Steve Losh.
+!*background: #1c1b1a
+!*foreground: #f8f6f2
+!*cursorColor: #aeee00
+!*scrollColor: #45413b
+!*fadeColor: #FFFFFF
+!*fading: 5
+!! black
+!*color0: #141413
+!*color8: #000000
+!! red
+!*color1: #ff2c4b
+!*color9: #ff2c4b
+!! green
+!*color2: #aeee00
+!*color10: #aeee00
+!! yellow
+!*color3: #fade3e
+!*color11: #ffa724
+!! blue
+!*color4: #0a9dff
+!*color12: #0a9dff
+!! magenta
+!*color5: #ff9eb8
+!*color13: #ff9eb8
+!! cyan
+!*color6: #8cffba
+!*color14: #8cffba
+!! white
+!*color7: #d9cec3
+!*color15: #ffffff
+
+! Current theme:
 *color0:  #2E3436
 *color1:  #a40000
 *color2:  #4E9A06
@@ -45,28 +170,12 @@ urxvt*background: black
 *color13: #AD7FA8
 *color14: #fcaf3e
 *color15: #EEEEEC
+*background: #080808
+*foreground: #999999
 
-! urxvt
-URxvt*buffered: true
-URxvt*cursorBlink: true
-URxvt*underlineColor: orange
-URxvt*depth: 32
-URxvt*borderless: true
-! URxvt*scrollBar: false
-! URxvt*loginShell: true
-!URxvt*saveLines: 5000
-URxvt*termName: rxvt-unicode
-URxvt.perl-ext-common: default,matcher,vtwheel
-!URxvt.urlLauncher: firefox
-!URxvt.matcher.button: 1 
-
-! ========================== !
-
-!! jwr dark
-!URxvt.background: #080808
-!URxvt.foreground: #999999
-
-!!black
+!black
+!*background: #1c1b1a
+!*foreground: #f8f6f2
 !*color0:#242424
 !*color8:#474747
 !!red
@@ -91,18 +200,20 @@ URxvt.perl-ext-common: default,matcher,vtwheel
 !*color7:#899CA1
 !*color15:#C0C0C0
 
+!! jwr dark
+
 !urxvt*font:             xft:Terminus:size=10
-!URxvt*.font:             xft:Ubuntu Mono:size=12
-!URxvt*.termName:         rxvt
+URxvt*.font:             xft:Ubuntu Mono derivative Powerline:size=12
+URxvt*.termName:         rxvt
 !URxvt*.background:       #333333
 !URxvt*.foreground:       #cccccc
 !URxvt*.scrollBar:        false
 ! scrollbar style - rxvt (default), plain (most compact), next, or xterm
-!URxvt.scrollstyle: plain
-!URxvt*.perl-lib:         /usr/lib/URxvt/perl/
+URxvt.scrollstyle: plain
+URxvt*.perl-lib:         /usr/lib/URxvt/perl/
 !URxvt*.perl-ext-common:  default,matcher
 !URxvt*.urlLauncher:      /usr/bin/chromium
-!!URxvt*.urlLauncher:      /usr/bin/jumanji
+!URxvt*.urlLauncher:      /usr/bin/jumanji
 !URxvt*.matcher.button:   1
 !URxvt*.fading:           50
 !URxvt*.fadeColor:        #000000
@@ -111,9 +222,27 @@ URxvt.perl-ext-common: default,matcher,vtwheel
 
 !URxvt.transparent:   true
 !URxvt.tintColor:     white
-!URxvt.shading:       30 
+!URxvt.shading:       10
 !URxvt*.depth: 32
 !URxvt*.background: [75]#333333
+
+URxvt*urgentOnBell: true
+URxvt*perl-ext-common: default,tabbedex,matcher,url-select,vtwheel,option-popup,selection-popup,readline
+URxvt.tabbed.autohide: true
+URxvt.keysym.Control-t: perl:tabbedex:new_tab
+URxvt.keysym.Control-Tab: perl:tabbedex:next_tab
+URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
+URxvt.keysym.Control-Shift-Left: perl:tabbedex:move_tab_left
+URxvt.keysym.Control-Shift-Right: perl:tabbedex:move_tab_right
+URxvt.keysym.Control-Shift-R: perl:tabbedex:rename_tab
+URxvt*matcher.button: 1
+URxvt*urlLauncher: /usr/bin/chromium
+URxvt*.keysym.C-Delete: perl:matcher:last
+URxvt*.keysym.M-Delete: perl:matcher:list
+URxvt*.keysym.M-u: perl:url-select:select_next
+URxvt*.url-select.launcher: /usr/bin/chromium
+URxvt*.url-select.underline: true
+URxvt*visualBell: true
 
 !URxvt*.transparent: true
 !! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
@@ -136,7 +265,7 @@ URxvt.perl-ext-common: default,matcher,vtwheel
 ! Use the specified colour for the colour value n, where 0-7
 ! URxvt*colorn: colour
 
-! 
+!
 ! URxvt*colorBD: colour
 
 ! Use the specified colour to display bold or italic characters when
@@ -192,7 +321,7 @@ URxvt.perl-ext-common: default,matcher,vtwheel
 
 ! URxvt*boldFont: fontlist
 
-! 
+!
 ! URxvt*italicFont: fontlist
 
 ! The font list to use for displaying bold, italic or bold italic
@@ -214,7 +343,7 @@ URxvt.perl-ext-common: default,matcher,vtwheel
 ! URxvt*urgentOnBell: boolean
 
 ! True: use visual bell on receipt of a bell character; option -vb.
-! URxvt*visualBell: boolean
+!URxvt*visualBell: boolean
 
 ! True: start as a login shell by prepending a - to argv[0] of the
 ! URxvt*loginShell: boolean
@@ -309,7 +438,7 @@ URxvt.perl-ext-common: default,matcher,vtwheel
 ! The characters used as delimiters for double-click word selection
 ! URxvt*cutchars: string
 
-! 
+!
 ! URxvt*{|}
 
 ! OverTheSpot, OffTheSpot, Root; option -pt.

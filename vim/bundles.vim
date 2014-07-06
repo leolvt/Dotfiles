@@ -14,7 +14,7 @@ Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tomasr/molokai'
 "Bundle 'Pychimp/vim-luna'
-"Bundle 'sjl/badwolf'
+Bundle 'sjl/badwolf'
 "Bundle 'noah/vim256-color'
 " }}}
 
