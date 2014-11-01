@@ -89,6 +89,8 @@ Bundle 'std_c.zip'
 Bundle 'PotatoesMaster/i3-vim-syntax'
 " }}}
 
+" LaTeX {{{
+"Bundle 'LaTeX-Box-Team/LaTeX-Box'
 " }}}
 
 " Git Integration {{{1

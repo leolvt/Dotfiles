@@ -32,40 +32,40 @@ if has("autocmd")
     augroup END
     " }}}
 
-    " Highlight long and almost lines {{{
-    augroup LongLineMatching
-        autocmd!
-        "autocmd BufWinEnter * call s:SetLongLineMatching()
-        "autocmd BufWinEnter * let w:whitespace_match_number =
-        "\ matchadd('ExtraWhitespace', '\s\+$')
-        autocmd Syntax * call s:SetLongLineMatching()
-    augroup END
+    " Highlight long and almost lines. THIS IS TOO SLOW!!!! {{{
+    "augroup LongLineMatching
+        "autocmd!
+        ""autocmd BufWinEnter * call s:SetLongLineMatching()
+        ""autocmd BufWinEnter * let w:whitespace_match_number =
+        ""\ matchadd('ExtraWhitespace', '\s\+$')
+        "autocmd Syntax * call s:SetLongLineMatching()
+    "augroup END
 
-    function! s:SetLongLineMatching()
-        " Define the pattern for almost long line
-        let l:MatchWarning = (&tw > 0) ?
-                    \ "\\%<".(&tw+1)."v.\\%>".(&tw-3)."v"
-                    \ : "\\%<81v.\\%>77v"
-        " Add (or update) the match
-        if exists('w:almost_long_match_number')
-            call matchdelete(w:almost_long_match_number)
-            call matchadd('WarningMsg', l:MatchWarning, 10,
-                        \ w:almost_long_match_number)
-        else
-            let w:almost_long_match_number = matchadd('WarningMsg',
-                        \ l:MatchWarning)
-        endif
+    "function! s:SetLongLineMatching()
+        "" Define the pattern for almost long line
+        "let l:MatchWarning = (&tw > 0) ?
+                    "\ "\\%<".(&tw+1)."v.\\%>".(&tw-3)."v"
+                    "\ : "\\%<81v.\\%>77v"
+        "" Add (or update) the match
+        "if exists('w:almost_long_match_number')
+            "call matchdelete(w:almost_long_match_number)
+            "call matchadd('WarningMsg', l:MatchWarning, 10,
+                        "\ w:almost_long_match_number)
+        "else
+            "let w:almost_long_match_number = matchadd('WarningMsg',
+                        "\ l:MatchWarning)
+        "endif
 
-        " Define the pattern fot long line
-        let l:MatchError = (&tw > 0) ?  "\\%".(&tw+1)."v.*" : "\\%81v.*"
-        " Add (or update) the match
-        if exists('w:long_match_number')
-            call matchdelete(w:long_match_number)
-            call matchadd('ErrorMsg', l:MatchError, 10, w:long_match_number)
-        else
-            let w:long_match_number =  matchadd('ErrorMsg', l:MatchError)
-        endif
-    endfunction
+        "" Define the pattern fot long line
+        "let l:MatchError = (&tw > 0) ?  "\\%".(&tw+1)."v.*" : "\\%81v.*"
+        "" Add (or update) the match
+        "if exists('w:long_match_number')
+            "call matchdelete(w:long_match_number)
+            "call matchadd('ErrorMsg', l:MatchError, 10, w:long_match_number)
+        "else
+            "let w:long_match_number =  matchadd('ErrorMsg', l:MatchError)
+        "endif
+    "endfunction
     " }}}
 
     " Highlight extra spaces {{{
@@ -132,5 +132,12 @@ if has("autocmd")
     augroup END
     " }}}
 
+    " Use relative numbers in normal mode and regular numbers in insert mode {{{
+    augroup numbering
+        au!
+		autocmd InsertEnter * silent! :set norelativenumber
+		autocmd InsertLeave,BufNewFile,VimEnter * silent! :set relativenumber
+    augroup END
+    " }}}
 endif
 

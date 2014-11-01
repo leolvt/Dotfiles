@@ -74,6 +74,7 @@ __pycache__
 *.blg
 *.dvi
 *.fdb_latexmk
+*.fls
 *.glg
 *.glo
 *.gls
@@ -88,6 +89,7 @@ __pycache__
 *.mtc
 *.mtc0
 *.nav
+*.nls
 *.nlo
 *.out
 *.pdfsync
