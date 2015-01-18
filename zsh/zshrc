@@ -40,7 +40,7 @@ export PERL_MB_OPT="--install_base /home/vilela/.local";
 export PERL_MM_OPT="INSTALL_BASE=/home/vilela/.local";
 export PERL5LIB="/home/vilela/.local/lib/perl5/x86_64-linux-thread-multi:/home/vilela/.local/lib/perl5";
 
-source /etc/profile.d/vte.sh
+#source /etc/profile.d/vte.sh
 # TODO: run the following line if inside gnome-terminal 
 #chpwd_functions+=(__vte_osc7)
 
@@ -60,9 +60,9 @@ ZSH=$HOME/.config/oh-my-zsh
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="af-magic"
 #ZSH_THEME="bira"
-#ZSH_THEME="candy"
+ZSH_THEME="candy"
 #ZSH_THEME="kphoen"
-ZSH_THEME="juanghurtado"
+#ZSH_THEME="juanghurtado"
 #ZSH_THEME="gnzh"
 
 # Set to this to use case-sensitive completion
@@ -102,6 +102,7 @@ setopt NULL_GLOB
 
 bindkey "^[[7~" beginning-of-line
 bindkey "^[[8~" end-of-line
+bindkey "^I" expand-or-complete-with-dots
 
 # ----------------------------------------------------
 # 3) Greeting and MOTD

@@ -85,6 +85,10 @@ Bundle 'std_c.zip'
 "Bundle 'aftersyntaxc.vim'
 " }}}
 
+" i3 {{{
+Bundle 'PotatoesMaster/i3-vim-syntax'
+" }}}
+
 " }}}
 
 " Git Integration {{{1
