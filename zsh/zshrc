@@ -17,7 +17,7 @@
 # 1) Update PATH and other envvars
 # ----------------------------------------------------
 
-# Add some places to the PATH variable. 
+# Add some places to the PATH variable.
 # Currently, only the local bin.
 LOCALPATH=~/.local/bin
 RUBY_PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin
@@ -34,6 +34,9 @@ export EDITOR="vim -p"
 # more similar to GTK
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
+# MAke QT look like GTK+
+export QT_STYLE_OVERRIDE="gtk"
+
 # Perl variables used to locate packages
 export PERL_LOCAL_LIB_ROOT="/home/vilela/.local";
 export PERL_MB_OPT="--install_base /home/vilela/.local";
@@ -41,7 +44,7 @@ export PERL_MM_OPT="INSTALL_BASE=/home/vilela/.local";
 export PERL5LIB="/home/vilela/.local/lib/perl5/x86_64-linux-thread-multi:/home/vilela/.local/lib/perl5";
 
 #source /etc/profile.d/vte.sh
-# TODO: run the following line if inside gnome-terminal 
+# TODO: run the following line if inside gnome-terminal
 #chpwd_functions+=(__vte_osc7)
 
 # Set the correct TERM for tmux with 256 colors

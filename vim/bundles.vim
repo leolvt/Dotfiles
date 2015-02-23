@@ -11,11 +11,13 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Themes {{{1
+"Bundle 'Pychimp/vim-luna'
+"Bundle 'noah/vim256-color'
+Bundle 'sjl/badwolf'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tomasr/molokai'
-"Bundle 'Pychimp/vim-luna'
-Bundle 'sjl/badwolf'
-"Bundle 'noah/vim256-color'
+Bundle 'vim-scripts/256-jungle'
+Bundle 'w0ng/vim-hybrid'
 " }}}
 
 " Vim Editor and interface features {{{1

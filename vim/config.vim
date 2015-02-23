@@ -44,17 +44,20 @@ set hlsearch
 " Colors and Appearance {{{1
 
 if has('gui_running')
-    set guifont=Ubuntu\ Mono\ 11
-    set background=dark
-    "let g:solarized_termcolors=256
-    "let g:solarized_termtrans=1
-    colorscheme solarized
+	set guioptions=ai
+	set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 13
+	set background=dark
+	"let g:solarized_termcolors=256
+	"let g:solarized_termtrans=1
+	"colorscheme solarized
+	colorscheme hybrid
 else
-    " Explicitly tell Vim that the terminal supports 256 colors
-    set t_Co=256
-    set background=dark
-    let g:solarized_termcolors=256
-    colorscheme solarized
+	" Explicitly tell Vim that the terminal supports 256 colors
+	set t_Co=256
+	set background=dark
+	"let g:solarized_termcolors=256
+	"colorscheme solarized
+	colorscheme hybrid
 endif
 
 set ruler

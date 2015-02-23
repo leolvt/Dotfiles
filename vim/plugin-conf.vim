@@ -22,6 +22,7 @@ let g:UltiSnips.JumpBackwardTrigger='<C-K>'
 " You Complete Me {{{
 let g:ycm_register_as_syntastic_checker = 0
 let g:ycm_allow_changing_updatetime = 0
+let g:ycm_global_ycm_extra_conf = '~/.config/ycm/extra_conf.py'
 " }}}
 
 " std_c {{{
@@ -43,7 +44,7 @@ let g:syntastic_enable_highlighting = 1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_always_populate_loc_list = 1
 
-let g:syntastic_cpp_ycm_args = ''
+"let g:syntastic_cpp_ycm_args = ''
 " }}}
 
 " ==========================
