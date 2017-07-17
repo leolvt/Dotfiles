@@ -21,7 +21,8 @@
 # Currently, only the local bin.
 LOCALPATH=~/.local/bin
 RUBY_PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin
-export PATH=$PATH:$LOCALPATH:$RUBY_PATH
+CONDA_PATH=/opt/lteixeir/miniconda3/bin
+export PATH=$PATH:$LOCALPATH:$RUBY_PATH:$CONDA_PATH
 
 # Local LaTeX files under this dir:
 export TEXMFHOME=~/.local/share/texmf

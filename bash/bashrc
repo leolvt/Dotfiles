@@ -278,3 +278,6 @@ if [ -f ~/.config/shell-common/motd.sh ]; then
     . ~/.config/shell-common/motd.sh
 fi
 
+
+# added by Miniconda3 4.2.12 installer
+export PATH="/opt/lteixeir/miniconda3/bin:$PATH"
