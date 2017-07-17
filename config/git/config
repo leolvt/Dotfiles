@@ -1,0 +1,24 @@
+[core]
+	excludesfile = ~/.gitignore-global
+	editor = vim
+	autocrlf = input
+	safecrlf = true
+	autocrlf = false
+
+[user]
+	name = Leonardo Vilela Teixeira
+	email = leolvt@gmail.com
+
+[color]
+	ui = auto
+
+[alias]
+	br = branch
+	co = checkout
+	ci = commit
+	em = "!${EDITOR:-vim -p} $(git ls-files --modified)"
+	st = status --branch 
+	tree = log --graph --decorate --pretty=oneline --abbrev-commit
+[push]
+	default = simple
+

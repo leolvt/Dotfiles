@@ -1,1 +1,0 @@
-#alias mkdir='nocorrect mkdir'

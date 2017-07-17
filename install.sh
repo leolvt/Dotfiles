@@ -1,136 +1,132 @@
-#!/bin/sh
+ask () {
+	echo -n "$@" '[y/N] '
+	read ans
+	case "$ans" in
+		(y* | Y*) return 0 ;;
+		(*) return 1 ;;
+	esac
+}
 
-# Set Install dir
-DEST=${XDG_CONFIG_HOME:-$HOME/.config}
+# ==================================================== #
 
-# --------------------------
-# First, a simple check to see if we are inside the right folder
-if [ ! -f "bash/bashrc" ]; then
-    echo "ERROR: Didn't find dotfiles..."
-    echo "  You must run the install script inside the Dotfiles directory."
-    exit 1
+is_interactive=
+use_ssh=
+gave_dest_dir=
+DEST_DIR=$HOME/dotfiles
+GIT_HTTPS_URL="https://github.com/leolvt/Dotfiles.git"
+GIT_SSH_URL="git@github.com:leolvt/Dotfiles.git"
+
+while getopts isd: name
+do
+   case $name in
+   i)   is_interactive=1;;
+   s)	use_ssh=1;;
+   d)	gave_dest_dir=1
+		DEST_DIR="$OPTARG";;
+   ?)   printf "Usage: %s: [−i] [-s] [-d DEST_DIR]\n" $0
+	    printf "\n"
+		printf "  -i			enable interactive mode\n"
+		printf "  -s			clone repo using SSH URL\n"
+		printf "  -d DEST_DIR	clone repo to DEST_DIR\n"
+		exit 2;;
+   esac
+done
+
+shift $(($OPTIND - 1))
+
+if [[ -n $* ]]; then
+	printf "[WARNING] Unused remaining arguments are: %s\n" "$*"
 fi
 
-# --------------------------
-# Now a simple check to se if we have a clean install
-if [ -d $DEST/shell-common ]; then
-	echo "ERROR: An installation already exists. Aborting!"
-	echo "  If you are trying to reinstall the files, you should "
-	echo "  run ./uninstall.sh before."
+if [[ -z $gave_dest_dir && -n $is_interactive ]]; then
+	echo "[PROMPT] Please, indicate destination folder (or press ENTER for default: $DEST_DIR)"
+	read ans
+	if [[ ! -z $ans ]]; then
+		DEST_DIR=$ans
+	fi
+fi
+
+mkdir -p $DEST_DIR
+errcode=$?
+if [[ $errcode -ne 0 ]]; then
+	echo "[FATAL] Failed to create destination folder: $DEST_DIR"
+	echo "[FATAL] Aborting :("
+	exit $errcode
+fi
+DEST_DIR=$(cd $DEST_DIR; pwd)
+
+if [[ -z $(ls -A $DEST_DIR) ]]; then
+	printf "[INFO] Installing Dotfiles to: '%s'\n" $DEST_DIR
+else
+	echo "[FATAL] Destination folder is not empty. Aborting :("
 	exit 1
 fi
 
-# --------------------------
-# Check if we should install bash and zsh files
-INSTALL_BASH=0
-INSTALL_ZSH=1
-if [ $# -ge 1 ]; then
-	case $1 in
-		bash)
-			INSTALL_BASH=1;
-			INSTALL_ZSH=0;
-			;;
-		zsh)
-			INSTALL_BASH=0;
-			INSTALL_ZSH=1;
-			;;
-		both)
-			INSTALL_BASH=1;
-			INSTALL_ZSH=1;
-			;;
-	esac
+[[ -n $is_interactive ]] && (echo 'Press any key to continue...'; read)
+
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:=$HOME/.config}
+mkdir -p $XDG_CONFIG_HOME
+
+if [[ -z $use_ssh && -n $is_interactive ]]; then
+	ask "[PROMPT] Clone using SSH?" && use_ssh=1
 fi
 
-#echo -n "Install BASH files? [Y/n] "
-#read ans
-#case "$ans" in
-	#n*|N*) INSTALL_BASH=0 ;;
-#esac
-
-#echo -n "Install ZSH files? [Y/n] "
-#read ans
-#case "$ans" in
-	#n*|N*) INSTALL_ZSH=0 ;;
-#esac
-
-# --------------------------
-echo "Installing files commom to both shells (MotD, alias, etc)"
-ln -s $PWD/shell-common $DEST/shell-common
-
-# --------------------------
-# Installing bash files
-if [ "$INSTALL_BASH" -eq "1" ]; then
-
-	if [ -f ~/.bashrc ]; then
-		echo "ERROR: ~/.bashrc already exists. Aborting!"
-		echo "  If you are trying to reinstall the files, you should "
-		echo "  run ./uninstall.sh before."
-		exit 1
-	fi
-
-	echo "Installing Bash config files (bashrc, bash_logout, etc.)"
-	ln -s $PWD/bash/bash_login ~/.bash_login
-	ln -s $PWD/bash/bash_logout ~/.bash_logout
-	ln -s $PWD/bash/bashrc ~/.bashrc
-	ln -s $DEST/shell-common/aliases.sh ~/.bash_aliases
-	ln -s $DEST/shell-common/functions.sh ~/.bash_functions
+if [[ -n $use_ssh ]]; then
+	GIT_URL=$GIT_SSH_URL
+else
+	GIT_URL=$GIT_HTTPS_URL
 fi
 
-# --------------------------
-# Installing zsh files
-if [ "$INSTALL_ZSH" -eq "1" ]; then
+echo "[INFO] Cloning dotfiles repository ($GIT_URL)"
+[[ -n $is_interactive ]] && (echo 'Press any key to continue...'; read)
+git clone --recursive $GIT_URL "$DEST_DIR" || (echo "[FATAL] Aborting :(" && exit 1)
 
-	if [ -f ~/.zshrc ]; then
-		echo "ERROR: ~/.zshrc already exists. Aborting!"
-		echo "  If you are trying to reinstall the files, you should "
-		echo "  run ./uninstall.sh before."
-		exit 1
-	fi
+echo "[INFO] Updating RCM configuration with dotfiles folder"
+ln -s $DEST_DIR $XDG_CONFIG_HOME/dotfiles
 
-	echo "Installing zsh config files (and oh-my-zsh)"
-    git clone git://github.com/robbyrussell/oh-my-zsh.git $DEST/oh-my-zsh
-	ln -s $PWD/zsh/zshrc ~/.zshrc
-	ln -s $PWD/zsh/*.zsh $DEST/oh-my-zsh/custom/
-	ln -s $DEST/shell-common/aliases.sh	$DEST/oh-my-zsh/custom/aliases.zsh
-	ln -s $DEST/shell-common/functions.sh $DEST/oh-my-zsh/custom/functions.zsh
-	ln -s $DEST/shell-common/motd.sh $DEST/oh-my-zsh/custom/motd.zsh
-fi
+echo "[INFO] Seting up dotfiles through RCM"
+[[ -n $is_interactive ]] && (echo 'Press any key to continue...'; read)
+env RCRC=$DEST_DIR/config/rcrc rcup
 
-# --------------------------
-echo "Installing Git config files (gitconfig, gitignore-global)"
-ln -s $PWD/git/gitconfig ~/.gitconfig
-ln -s $PWD/git/gitignore-global ~/.gitignore-global
+echo "[INFO] Setting up antigen plugins"
+[[ -n $is_interactive ]] && (echo 'Press any key to continue...'; read)
+source $XDG_CONFIG_HOME/zsh/.zshrc
 
-# --------------------------
-echo "Installing Vim config files (vimrc)"
-mkdir -p ~/.vim/{colors,snippets,spell,tmp/{backup,undo,swap}}
-ln -s $PWD/vim/vimrc ~/.vimrc
-ln -s $PWD/vim/*.vim ~/.vim/
+echo "[INFO] Setting up Vim plugins"
+zsh -c "vim +PluginInstall +qall"
 
-# --------------------------
-echo "Installing EditorConfig file (.editorconfig)"
-ln -s $PWD/various/editorconfig $HOME/.editorconfig
+TEXMFDIR=${TEXMFHOME:-$HOME/.local/share/texmf}
+echo "[INFO] Creating TeX folders at $TEXMFDIR"
+[[ -n $is_interactive ]] && (echo 'Press any key to continue...'; read)
+mkdir -p $TEXMFDIR/
+mkdir -p $TEXMFDIR/bibtex
+mkdir -p $TEXMFDIR/bibtex/bib
+mkdir -p $TEXMFDIR/bibtex/bib/base
+mkdir -p $TEXMFDIR/bibtex/bib/misc
+mkdir -p $TEXMFDIR/bibtex/bst
+mkdir -p $TEXMFDIR/bibtex/bst/base
+mkdir -p $TEXMFDIR/bibtex/bst/misc
+mkdir -p $TEXMFDIR/doc
+mkdir -p $TEXMFDIR/fonts
+mkdir -p $TEXMFDIR/fonts/map
+mkdir -p $TEXMFDIR/fonts/lig
+mkdir -p $TEXMFDIR/fonts/enc
+mkdir -p $TEXMFDIR/metafont
+mkdir -p $TEXMFDIR/metafont/base
+mkdir -p $TEXMFDIR/metafont/misc
+mkdir -p $TEXMFDIR/metafont/support
+mkdir -p $TEXMFDIR/metapost
+mkdir -p $TEXMFDIR/metapost/base
+mkdir -p $TEXMFDIR/metapost/misc
+mkdir -p $TEXMFDIR/metapost/support
+mkdir -p $TEXMFDIR/mtf
+mkdir -p $TEXMFDIR/source
+mkdir -p $TEXMFDIR/scripts
+mkdir -p $TEXMFDIR/tex
+mkdir -p $TEXMFDIR/tex/generic
+mkdir -p $TEXMFDIR/tex/generic/hyphen
+mkdir -p $TEXMFDIR/tex/generic/images
+mkdir -p $TEXMFDIR/tex/generic/misc
+mkdir -p $TEXMFDIR/tex/latex
 
-# --------------------------
-echo "Installing font configuration file (.fonts.conf)"
-mkdir -p $DEST/fontconfig
-ln -s $PWD/various/fonts.conf $DEST/fontconfig/fonts.conf
-
-# --------------------------
-
-echo "Installing X config files (xprofile, Xresources)"
-ln -s $PWD/various/xprofile ~/.xprofile
-ln -s $PWD/various/Xresources ~/.Xresources
-
-# --------------------------
-echo "Creating TEXMF local dir"
-various/make-tex-dirs.sh create
-
-# --------------------------
-if [ ! -d "~/.vim/bundle/vundle" ]; then
-    echo "Installing Vim Vundle script, to manage vim plugins."
-    git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-    echo "Installing Vim Bundles"
-    #vim -u ~/.vim/bundles.vim +BundleInstall +q
-    vim +BundleInstall +qall
-fi
+echo "[INFO] Finished. Make sure to re-login on the shell for changes to take effect."

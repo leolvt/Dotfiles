@@ -1,0 +1,3 @@
+DOTFILES_DIRS="$HOME/.config/dotfiles"
+SYMLINK_DIRS="config/zsh config/vim/bundle/vundle config/antigen/repo"
+EXCLUDES="README.md install.sh"

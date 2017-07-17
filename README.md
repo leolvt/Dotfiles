@@ -1,14 +1,8 @@
-Dotfiles
-========
+# How to install
 
-This repository keeps my wonderfull configuration files stashed.
-*Use it at your own risk!!*
+Before starting, make sure that your shell is `zsh` and you have [RCM](https://github.com/thoughtbot/rcm) installed.
 
-Installing and Uninstalling
----------------------------
-
-There are some simple/naive scripts to install and uninstall the files.
-
-These scripts merely create or remove symbolic links to the contents of
-the repository.
+~~~sh
+tmpfile=$(mktemp) && curl -C - -o $tmpfile https://raw.githubusercontent.com/leolvt/Dotfiles/master/install.sh && zsh $tmpfile -i && rm $tmpfile
+~~~
 
