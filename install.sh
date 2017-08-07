@@ -93,6 +93,7 @@ echo "[INFO] Setting up antigen plugins"
 source $XDG_CONFIG_HOME/zsh/.zshrc
 
 echo "[INFO] Setting up Vim plugins"
+mkdir -p $HOME/.cache/vim
 zsh -c "vim +PluginInstall +qall"
 
 TEXMFDIR=${TEXMFHOME:-$HOME/.local/share/texmf}
@@ -128,5 +129,10 @@ mkdir -p $TEXMFDIR/tex/generic/hyphen
 mkdir -p $TEXMFDIR/tex/generic/images
 mkdir -p $TEXMFDIR/tex/generic/misc
 mkdir -p $TEXMFDIR/tex/latex
+
+
+echo "[INFO] Setting up SSH authorized keys"
+cat $HOME/.ssh/*.pub > $HOME/.ssh/authorized_keys
+
 
 echo "[INFO] Finished. Make sure to re-login on the shell for changes to take effect."
