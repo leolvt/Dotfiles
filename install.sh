@@ -82,7 +82,7 @@ echo "[INFO] Cloning dotfiles repository ($GIT_URL)"
 git clone --recursive $GIT_URL "$DEST_DIR" || (echo "[FATAL] Aborting :(" && exit 1)
 
 echo "[INFO] Updating RCM configuration with dotfiles folder"
-ln -s $DEST_DIR $XDG_CONFIG_HOME/dotfiles
+ln -s $DEST_DIR $XDG_CONFIG_HOME
 
 echo "[INFO] Seting up dotfiles through RCM"
 [[ -n $is_interactive ]] && (echo 'Press any key to continue...'; read)
